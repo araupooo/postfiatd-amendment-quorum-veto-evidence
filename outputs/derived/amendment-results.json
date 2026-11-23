@@ -1,0 +1,1382 @@
+{
+ "pack": "Amendment Voting Quorum and Veto in postfiatd",
+ "pinned_commit": "0085a1ff885d6a446369cf73a4430f75af22be55",
+ "model": {
+  "flag_interval_s": 900,
+  "majority_time_s": 1209600,
+  "pre_threshold": "204/256, passes on >=",
+  "post_threshold": "67/100, passes on strict >, single-validator >= exception"
+ },
+ "scenarios": [
+  {
+   "id": "S-01",
+   "title": "Pre-fix boundary: 27 of 35 passes",
+   "regime": "pre",
+   "unl_size": 35,
+   "local_vote_up": true,
+   "network_up": true,
+   "runs": [
+    {
+     "label": "A",
+     "regime": "pre",
+     "threshold": 27,
+     "min_passing_votes": 27,
+     "min_blocking_minority": 9,
+     "validator_quorum": 24,
+     "outcome": "enabled",
+     "majority_round": 0,
+     "enabled_round": 1344,
+     "enabled_close_time_s": 1209600,
+     "ideal_enable_round": 1344,
+     "delay_rounds": 0,
+     "delay_s": 0,
+     "got_majority_rounds": [
+      0
+     ],
+     "lost_majority_rounds": [],
+     "hold_rounds": 1343,
+     "rounds_simulated": 1345,
+     "transitions": [
+      {
+       "round": 0,
+       "close_time_s": 0,
+       "votes": 27,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 27,
+       "has_majority": true,
+       "ledger_majority": false,
+       "action": "got_majority"
+      },
+      {
+       "round": 1,
+       "close_time_s": 900,
+       "votes": 27,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 27,
+       "has_majority": true,
+       "ledger_majority": true,
+       "action": "hold"
+      },
+      {
+       "round": 1344,
+       "close_time_s": 1209600,
+       "votes": 27,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 27,
+       "has_majority": true,
+       "ledger_majority": true,
+       "action": "enable"
+      }
+     ]
+    },
+    {
+     "label": "B",
+     "regime": "pre",
+     "threshold": 27,
+     "min_passing_votes": 27,
+     "min_blocking_minority": 9,
+     "validator_quorum": 24,
+     "outcome": "never_majority",
+     "majority_round": null,
+     "enabled_round": null,
+     "enabled_close_time_s": null,
+     "ideal_enable_round": null,
+     "delay_rounds": null,
+     "delay_s": null,
+     "got_majority_rounds": [],
+     "lost_majority_rounds": [],
+     "hold_rounds": 0,
+     "rounds_simulated": 1745,
+     "transitions": [
+      {
+       "round": 0,
+       "close_time_s": 0,
+       "votes": 26,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 27,
+       "has_majority": false,
+       "ledger_majority": false,
+       "action": "none"
+      },
+      {
+       "round": 1744,
+       "close_time_s": 1569600,
+       "votes": 26,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 27,
+       "has_majority": false,
+       "ledger_majority": false,
+       "action": "none"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S-02",
+   "title": "Post-fix boundary: 24 of 35 passes, 23 fails",
+   "regime": "post",
+   "unl_size": 35,
+   "local_vote_up": true,
+   "network_up": true,
+   "runs": [
+    {
+     "label": "A",
+     "regime": "post",
+     "threshold": 23,
+     "min_passing_votes": 24,
+     "min_blocking_minority": 12,
+     "validator_quorum": 24,
+     "outcome": "enabled",
+     "majority_round": 0,
+     "enabled_round": 1344,
+     "enabled_close_time_s": 1209600,
+     "ideal_enable_round": 1344,
+     "delay_rounds": 0,
+     "delay_s": 0,
+     "got_majority_rounds": [
+      0
+     ],
+     "lost_majority_rounds": [],
+     "hold_rounds": 1343,
+     "rounds_simulated": 1345,
+     "transitions": [
+      {
+       "round": 0,
+       "close_time_s": 0,
+       "votes": 24,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 23,
+       "has_majority": true,
+       "ledger_majority": false,
+       "action": "got_majority"
+      },
+      {
+       "round": 1,
+       "close_time_s": 900,
+       "votes": 24,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 23,
+       "has_majority": true,
+       "ledger_majority": true,
+       "action": "hold"
+      },
+      {
+       "round": 1344,
+       "close_time_s": 1209600,
+       "votes": 24,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 23,
+       "has_majority": true,
+       "ledger_majority": true,
+       "action": "enable"
+      }
+     ]
+    },
+    {
+     "label": "B",
+     "regime": "post",
+     "threshold": 23,
+     "min_passing_votes": 24,
+     "min_blocking_minority": 12,
+     "validator_quorum": 24,
+     "outcome": "never_majority",
+     "majority_round": null,
+     "enabled_round": null,
+     "enabled_close_time_s": null,
+     "ideal_enable_round": null,
+     "delay_rounds": null,
+     "delay_s": null,
+     "got_majority_rounds": [],
+     "lost_majority_rounds": [],
+     "hold_rounds": 0,
+     "rounds_simulated": 1745,
+     "transitions": [
+      {
+       "round": 0,
+       "close_time_s": 0,
+       "votes": 23,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 23,
+       "has_majority": false,
+       "ledger_majority": false,
+       "action": "none"
+      },
+      {
+       "round": 1744,
+       "close_time_s": 1569600,
+       "votes": 23,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 23,
+       "has_majority": false,
+       "ledger_majority": false,
+       "action": "none"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S-03",
+   "title": "Minority veto: 12 of 35 no-voters block (post-fix)",
+   "regime": "post",
+   "unl_size": 35,
+   "local_vote_up": true,
+   "network_up": true,
+   "runs": [
+    {
+     "label": "A",
+     "regime": "post",
+     "threshold": 23,
+     "min_passing_votes": 24,
+     "min_blocking_minority": 12,
+     "validator_quorum": 24,
+     "outcome": "enabled",
+     "majority_round": 0,
+     "enabled_round": 1344,
+     "enabled_close_time_s": 1209600,
+     "ideal_enable_round": 1344,
+     "delay_rounds": 0,
+     "delay_s": 0,
+     "got_majority_rounds": [
+      0
+     ],
+     "lost_majority_rounds": [],
+     "hold_rounds": 1343,
+     "rounds_simulated": 1345,
+     "transitions": [
+      {
+       "round": 0,
+       "close_time_s": 0,
+       "votes": 24,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 23,
+       "has_majority": true,
+       "ledger_majority": false,
+       "action": "got_majority"
+      },
+      {
+       "round": 1,
+       "close_time_s": 900,
+       "votes": 24,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 23,
+       "has_majority": true,
+       "ledger_majority": true,
+       "action": "hold"
+      },
+      {
+       "round": 1344,
+       "close_time_s": 1209600,
+       "votes": 24,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 23,
+       "has_majority": true,
+       "ledger_majority": true,
+       "action": "enable"
+      }
+     ]
+    },
+    {
+     "label": "B",
+     "regime": "post",
+     "threshold": 23,
+     "min_passing_votes": 24,
+     "min_blocking_minority": 12,
+     "validator_quorum": 24,
+     "outcome": "never_majority",
+     "majority_round": null,
+     "enabled_round": null,
+     "enabled_close_time_s": null,
+     "ideal_enable_round": null,
+     "delay_rounds": null,
+     "delay_s": null,
+     "got_majority_rounds": [],
+     "lost_majority_rounds": [],
+     "hold_rounds": 0,
+     "rounds_simulated": 1745,
+     "transitions": [
+      {
+       "round": 0,
+       "close_time_s": 0,
+       "votes": 23,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 23,
+       "has_majority": false,
+       "ledger_majority": false,
+       "action": "none"
+      },
+      {
+       "round": 1744,
+       "close_time_s": 1569600,
+       "votes": 23,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 23,
+       "has_majority": false,
+       "ledger_majority": false,
+       "action": "none"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S-04",
+   "title": "One-round dip below threshold restarts the clock",
+   "regime": "post",
+   "unl_size": 35,
+   "local_vote_up": true,
+   "network_up": true,
+   "runs": [
+    {
+     "label": "A",
+     "regime": "post",
+     "threshold": 23,
+     "min_passing_votes": 24,
+     "min_blocking_minority": 12,
+     "validator_quorum": 24,
+     "outcome": "enabled",
+     "majority_round": 0,
+     "enabled_round": 2305,
+     "enabled_close_time_s": 2074500,
+     "ideal_enable_round": 1344,
+     "delay_rounds": 961,
+     "delay_s": 864900,
+     "got_majority_rounds": [
+      0,
+      961
+     ],
+     "lost_majority_rounds": [
+      960
+     ],
+     "hold_rounds": 2302,
+     "rounds_simulated": 2306,
+     "transitions": [
+      {
+       "round": 0,
+       "close_time_s": 0,
+       "votes": 30,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 23,
+       "has_majority": true,
+       "ledger_majority": false,
+       "action": "got_majority"
+      },
+      {
+       "round": 1,
+       "close_time_s": 900,
+       "votes": 30,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 23,
+       "has_majority": true,
+       "ledger_majority": true,
+       "action": "hold"
+      },
+      {
+       "round": 960,
+       "close_time_s": 864000,
+       "votes": 20,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 23,
+       "has_majority": false,
+       "ledger_majority": true,
+       "action": "lost_majority"
+      },
+      {
+       "round": 961,
+       "close_time_s": 864900,
+       "votes": 30,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 23,
+       "has_majority": true,
+       "ledger_majority": false,
+       "action": "got_majority"
+      },
+      {
+       "round": 962,
+       "close_time_s": 865800,
+       "votes": 30,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 23,
+       "has_majority": true,
+       "ledger_majority": true,
+       "action": "hold"
+      },
+      {
+       "round": 2305,
+       "close_time_s": 2074500,
+       "votes": 30,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 23,
+       "has_majority": true,
+       "ledger_majority": true,
+       "action": "enable"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S-05",
+   "title": "Support gained then lost permanently",
+   "regime": "post",
+   "unl_size": 35,
+   "local_vote_up": true,
+   "network_up": true,
+   "runs": [
+    {
+     "label": "A",
+     "regime": "post",
+     "threshold": 23,
+     "min_passing_votes": 24,
+     "min_blocking_minority": 12,
+     "validator_quorum": 24,
+     "outcome": "majority_lost",
+     "majority_round": 0,
+     "enabled_round": null,
+     "enabled_close_time_s": null,
+     "ideal_enable_round": 1344,
+     "delay_rounds": null,
+     "delay_s": null,
+     "got_majority_rounds": [
+      0
+     ],
+     "lost_majority_rounds": [
+      480
+     ],
+     "hold_rounds": 479,
+     "rounds_simulated": 2225,
+     "transitions": [
+      {
+       "round": 0,
+       "close_time_s": 0,
+       "votes": 30,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 23,
+       "has_majority": true,
+       "ledger_majority": false,
+       "action": "got_majority"
+      },
+      {
+       "round": 1,
+       "close_time_s": 900,
+       "votes": 30,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 23,
+       "has_majority": true,
+       "ledger_majority": true,
+       "action": "hold"
+      },
+      {
+       "round": 480,
+       "close_time_s": 432000,
+       "votes": 15,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 23,
+       "has_majority": false,
+       "ledger_majority": true,
+       "action": "lost_majority"
+      },
+      {
+       "round": 481,
+       "close_time_s": 432900,
+       "votes": 15,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 23,
+       "has_majority": false,
+       "ledger_majority": false,
+       "action": "none"
+      },
+      {
+       "round": 2224,
+       "close_time_s": 2001600,
+       "votes": 15,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 23,
+       "has_majority": false,
+       "ledger_majority": false,
+       "action": "none"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S-06",
+   "title": "Validator churn that keeps the majority",
+   "regime": "post",
+   "unl_size": 35,
+   "local_vote_up": true,
+   "network_up": true,
+   "runs": [
+    {
+     "label": "A",
+     "regime": "post",
+     "threshold": 20,
+     "min_passing_votes": 21,
+     "min_blocking_minority": 10,
+     "validator_quorum": 21,
+     "outcome": "enabled",
+     "majority_round": 0,
+     "enabled_round": 1344,
+     "enabled_close_time_s": 1209600,
+     "ideal_enable_round": 1344,
+     "delay_rounds": 0,
+     "delay_s": 0,
+     "got_majority_rounds": [
+      0
+     ],
+     "lost_majority_rounds": [],
+     "hold_rounds": 1343,
+     "rounds_simulated": 1345,
+     "transitions": [
+      {
+       "round": 0,
+       "close_time_s": 0,
+       "votes": 30,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 23,
+       "has_majority": true,
+       "ledger_majority": false,
+       "action": "got_majority"
+      },
+      {
+       "round": 1,
+       "close_time_s": 900,
+       "votes": 30,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 23,
+       "has_majority": true,
+       "ledger_majority": true,
+       "action": "hold"
+      },
+      {
+       "round": 1344,
+       "close_time_s": 1209600,
+       "votes": 25,
+       "trusted": 30,
+       "validations": 35,
+       "quorum": 21,
+       "threshold": 20,
+       "has_majority": true,
+       "ledger_majority": true,
+       "action": "enable"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S-07",
+   "title": "Validator churn that kills the majority",
+   "regime": "post",
+   "unl_size": 35,
+   "local_vote_up": true,
+   "network_up": true,
+   "runs": [
+    {
+     "label": "A",
+     "regime": "post",
+     "threshold": 19,
+     "min_passing_votes": 20,
+     "min_blocking_minority": 10,
+     "validator_quorum": 20,
+     "outcome": "majority_lost",
+     "majority_round": 0,
+     "enabled_round": null,
+     "enabled_close_time_s": null,
+     "ideal_enable_round": 1344,
+     "delay_rounds": null,
+     "delay_s": null,
+     "got_majority_rounds": [
+      0
+     ],
+     "lost_majority_rounds": [
+      500
+     ],
+     "hold_rounds": 499,
+     "rounds_simulated": 2245,
+     "transitions": [
+      {
+       "round": 0,
+       "close_time_s": 0,
+       "votes": 24,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 23,
+       "has_majority": true,
+       "ledger_majority": false,
+       "action": "got_majority"
+      },
+      {
+       "round": 1,
+       "close_time_s": 900,
+       "votes": 24,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 23,
+       "has_majority": true,
+       "ledger_majority": true,
+       "action": "hold"
+      },
+      {
+       "round": 500,
+       "close_time_s": 450000,
+       "votes": 18,
+       "trusted": 29,
+       "validations": 35,
+       "quorum": 20,
+       "threshold": 19,
+       "has_majority": false,
+       "ledger_majority": true,
+       "action": "lost_majority"
+      },
+      {
+       "round": 501,
+       "close_time_s": 450900,
+       "votes": 18,
+       "trusted": 29,
+       "validations": 35,
+       "quorum": 20,
+       "threshold": 19,
+       "has_majority": false,
+       "ledger_majority": false,
+       "action": "none"
+      },
+      {
+       "round": 2244,
+       "close_time_s": 2019600,
+       "votes": 18,
+       "trusted": 29,
+       "validations": 35,
+       "quorum": 20,
+       "threshold": 19,
+       "has_majority": false,
+       "ledger_majority": false,
+       "action": "none"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S-08",
+   "title": "Single-validator network passes on one vote",
+   "regime": "post",
+   "unl_size": 1,
+   "local_vote_up": true,
+   "network_up": true,
+   "runs": [
+    {
+     "label": "A",
+     "regime": "post",
+     "threshold": 1,
+     "min_passing_votes": 1,
+     "min_blocking_minority": 1,
+     "validator_quorum": 1,
+     "outcome": "enabled",
+     "majority_round": 0,
+     "enabled_round": 1344,
+     "enabled_close_time_s": 1209600,
+     "ideal_enable_round": 1344,
+     "delay_rounds": 0,
+     "delay_s": 0,
+     "got_majority_rounds": [
+      0
+     ],
+     "lost_majority_rounds": [],
+     "hold_rounds": 1343,
+     "rounds_simulated": 1345,
+     "transitions": [
+      {
+       "round": 0,
+       "close_time_s": 0,
+       "votes": 1,
+       "trusted": 1,
+       "validations": 1,
+       "quorum": 1,
+       "threshold": 1,
+       "has_majority": true,
+       "ledger_majority": false,
+       "action": "got_majority"
+      },
+      {
+       "round": 1,
+       "close_time_s": 900,
+       "votes": 1,
+       "trusted": 1,
+       "validations": 1,
+       "quorum": 1,
+       "threshold": 1,
+       "has_majority": true,
+       "ledger_majority": true,
+       "action": "hold"
+      },
+      {
+       "round": 1344,
+       "close_time_s": 1209600,
+       "votes": 1,
+       "trusted": 1,
+       "validations": 1,
+       "quorum": 1,
+       "threshold": 1,
+       "has_majority": true,
+       "ledger_majority": true,
+       "action": "enable"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S-09",
+   "title": "Small UNL 5: 3 votes pass pre-fix, fail post-fix",
+   "regime": "post",
+   "unl_size": 5,
+   "local_vote_up": true,
+   "network_up": true,
+   "runs": [
+    {
+     "label": "A",
+     "regime": "pre",
+     "threshold": 3,
+     "min_passing_votes": 3,
+     "min_blocking_minority": 3,
+     "validator_quorum": 4,
+     "outcome": "enabled",
+     "majority_round": 0,
+     "enabled_round": 1344,
+     "enabled_close_time_s": 1209600,
+     "ideal_enable_round": 1344,
+     "delay_rounds": 0,
+     "delay_s": 0,
+     "got_majority_rounds": [
+      0
+     ],
+     "lost_majority_rounds": [],
+     "hold_rounds": 1343,
+     "rounds_simulated": 1345,
+     "transitions": [
+      {
+       "round": 0,
+       "close_time_s": 0,
+       "votes": 3,
+       "trusted": 5,
+       "validations": 5,
+       "quorum": 4,
+       "threshold": 3,
+       "has_majority": true,
+       "ledger_majority": false,
+       "action": "got_majority"
+      },
+      {
+       "round": 1,
+       "close_time_s": 900,
+       "votes": 3,
+       "trusted": 5,
+       "validations": 5,
+       "quorum": 4,
+       "threshold": 3,
+       "has_majority": true,
+       "ledger_majority": true,
+       "action": "hold"
+      },
+      {
+       "round": 1344,
+       "close_time_s": 1209600,
+       "votes": 3,
+       "trusted": 5,
+       "validations": 5,
+       "quorum": 4,
+       "threshold": 3,
+       "has_majority": true,
+       "ledger_majority": true,
+       "action": "enable"
+      }
+     ]
+    },
+    {
+     "label": "B",
+     "regime": "post",
+     "threshold": 3,
+     "min_passing_votes": 4,
+     "min_blocking_minority": 2,
+     "validator_quorum": 4,
+     "outcome": "never_majority",
+     "majority_round": null,
+     "enabled_round": null,
+     "enabled_close_time_s": null,
+     "ideal_enable_round": null,
+     "delay_rounds": null,
+     "delay_s": null,
+     "got_majority_rounds": [],
+     "lost_majority_rounds": [],
+     "hold_rounds": 0,
+     "rounds_simulated": 1745,
+     "transitions": [
+      {
+       "round": 0,
+       "close_time_s": 0,
+       "votes": 3,
+       "trusted": 5,
+       "validations": 5,
+       "quorum": 4,
+       "threshold": 3,
+       "has_majority": false,
+       "ledger_majority": false,
+       "action": "none"
+      },
+      {
+       "round": 1744,
+       "close_time_s": 1569600,
+       "votes": 3,
+       "trusted": 5,
+       "validations": 5,
+       "quorum": 4,
+       "threshold": 3,
+       "has_majority": false,
+       "ledger_majority": false,
+       "action": "none"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S-10",
+   "title": "24-hour vote expiry delays then restarts the hold",
+   "regime": "pre",
+   "unl_size": 35,
+   "local_vote_up": true,
+   "network_up": true,
+   "runs": [
+    {
+     "label": "A",
+     "regime": "pre",
+     "threshold": 27,
+     "min_passing_votes": 27,
+     "min_blocking_minority": 9,
+     "validator_quorum": 24,
+     "outcome": "enabled",
+     "majority_round": 0,
+     "enabled_round": 1544,
+     "enabled_close_time_s": 1389600,
+     "ideal_enable_round": 1344,
+     "delay_rounds": 200,
+     "delay_s": 180000,
+     "got_majority_rounds": [
+      0,
+      200
+     ],
+     "lost_majority_rounds": [
+      120
+     ],
+     "hold_rounds": 1462,
+     "rounds_simulated": 1545,
+     "transitions": [
+      {
+       "round": 0,
+       "close_time_s": 0,
+       "votes": 28,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 27,
+       "has_majority": true,
+       "ledger_majority": false,
+       "action": "got_majority"
+      },
+      {
+       "round": 1,
+       "close_time_s": 900,
+       "votes": 28,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 27,
+       "has_majority": true,
+       "ledger_majority": true,
+       "action": "hold"
+      },
+      {
+       "round": 120,
+       "close_time_s": 108000,
+       "votes": 26,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 27,
+       "has_majority": false,
+       "ledger_majority": true,
+       "action": "lost_majority"
+      },
+      {
+       "round": 121,
+       "close_time_s": 108900,
+       "votes": 26,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 27,
+       "has_majority": false,
+       "ledger_majority": false,
+       "action": "none"
+      },
+      {
+       "round": 200,
+       "close_time_s": 180000,
+       "votes": 28,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 27,
+       "has_majority": true,
+       "ledger_majority": false,
+       "action": "got_majority"
+      },
+      {
+       "round": 201,
+       "close_time_s": 180900,
+       "votes": 28,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 27,
+       "has_majority": true,
+       "ledger_majority": true,
+       "action": "hold"
+      },
+      {
+       "round": 1544,
+       "close_time_s": 1389600,
+       "votes": 28,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 27,
+       "has_majority": true,
+       "ledger_majority": true,
+       "action": "enable"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S-11",
+   "title": "Support lost in the exact round the hold completes",
+   "regime": "post",
+   "unl_size": 35,
+   "local_vote_up": true,
+   "network_up": true,
+   "runs": [
+    {
+     "label": "A",
+     "regime": "post",
+     "threshold": 23,
+     "min_passing_votes": 24,
+     "min_blocking_minority": 12,
+     "validator_quorum": 24,
+     "outcome": "majority_lost",
+     "majority_round": 0,
+     "enabled_round": null,
+     "enabled_close_time_s": null,
+     "ideal_enable_round": 1344,
+     "delay_rounds": null,
+     "delay_s": null,
+     "got_majority_rounds": [
+      0
+     ],
+     "lost_majority_rounds": [
+      1344
+     ],
+     "hold_rounds": 1343,
+     "rounds_simulated": 3089,
+     "transitions": [
+      {
+       "round": 0,
+       "close_time_s": 0,
+       "votes": 30,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 23,
+       "has_majority": true,
+       "ledger_majority": false,
+       "action": "got_majority"
+      },
+      {
+       "round": 1,
+       "close_time_s": 900,
+       "votes": 30,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 23,
+       "has_majority": true,
+       "ledger_majority": true,
+       "action": "hold"
+      },
+      {
+       "round": 1344,
+       "close_time_s": 1209600,
+       "votes": 20,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 23,
+       "has_majority": false,
+       "ledger_majority": true,
+       "action": "lost_majority"
+      },
+      {
+       "round": 1345,
+       "close_time_s": 1210500,
+       "votes": 20,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 23,
+       "has_majority": false,
+       "ledger_majority": false,
+       "action": "none"
+      },
+      {
+       "round": 3088,
+       "close_time_s": 2779200,
+       "votes": 20,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 23,
+       "has_majority": false,
+       "ledger_majority": false,
+       "action": "none"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S-12",
+   "title": "Local veto does not block network enablement",
+   "regime": "post",
+   "unl_size": 35,
+   "local_vote_up": false,
+   "network_up": true,
+   "runs": [
+    {
+     "label": "A",
+     "regime": "post",
+     "threshold": 23,
+     "min_passing_votes": 24,
+     "min_blocking_minority": 12,
+     "validator_quorum": 24,
+     "outcome": "enabled",
+     "majority_round": 0,
+     "enabled_round": 1344,
+     "enabled_close_time_s": 1209600,
+     "ideal_enable_round": 1344,
+     "delay_rounds": 0,
+     "delay_s": 0,
+     "got_majority_rounds": [
+      0
+     ],
+     "lost_majority_rounds": [],
+     "hold_rounds": 1343,
+     "rounds_simulated": 1345,
+     "transitions": [
+      {
+       "round": 0,
+       "close_time_s": 0,
+       "votes": 30,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 23,
+       "has_majority": true,
+       "ledger_majority": false,
+       "action": "got_majority"
+      },
+      {
+       "round": 1,
+       "close_time_s": 900,
+       "votes": 30,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 23,
+       "has_majority": true,
+       "ledger_majority": true,
+       "action": "hold"
+      },
+      {
+       "round": 1344,
+       "close_time_s": 1209600,
+       "votes": 30,
+       "trusted": 35,
+       "validations": 35,
+       "quorum": 24,
+       "threshold": 23,
+       "has_majority": true,
+       "ledger_majority": true,
+       "action": "enable"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S-13",
+   "title": "Quorum gate: 23 validations skip voting, 24 proceed",
+   "regime": "post",
+   "unl_size": 35,
+   "local_vote_up": true,
+   "network_up": true,
+   "runs": [
+    {
+     "label": "A",
+     "regime": "post",
+     "threshold": 23,
+     "min_passing_votes": 24,
+     "min_blocking_minority": 12,
+     "validator_quorum": 24,
+     "outcome": "never_majority",
+     "majority_round": null,
+     "enabled_round": null,
+     "enabled_close_time_s": null,
+     "ideal_enable_round": null,
+     "delay_rounds": null,
+     "delay_s": null,
+     "got_majority_rounds": [],
+     "lost_majority_rounds": [],
+     "hold_rounds": 0,
+     "rounds_simulated": 1745,
+     "transitions": [
+      {
+       "round": 0,
+       "close_time_s": 0,
+       "votes": 30,
+       "trusted": 35,
+       "validations": 23,
+       "quorum": 24,
+       "threshold": 23,
+       "has_majority": true,
+       "ledger_majority": false,
+       "action": "quorum_gate_skip"
+      },
+      {
+       "round": 1744,
+       "close_time_s": 1569600,
+       "votes": 30,
+       "trusted": 35,
+       "validations": 23,
+       "quorum": 24,
+       "threshold": 23,
+       "has_majority": true,
+       "ledger_majority": false,
+       "action": "quorum_gate_skip"
+      }
+     ]
+    },
+    {
+     "label": "B",
+     "regime": "post",
+     "threshold": 23,
+     "min_passing_votes": 24,
+     "min_blocking_minority": 12,
+     "validator_quorum": 24,
+     "outcome": "enabled",
+     "majority_round": 0,
+     "enabled_round": 1344,
+     "enabled_close_time_s": 1209600,
+     "ideal_enable_round": 1344,
+     "delay_rounds": 0,
+     "delay_s": 0,
+     "got_majority_rounds": [
+      0
+     ],
+     "lost_majority_rounds": [],
+     "hold_rounds": 1343,
+     "rounds_simulated": 1345,
+     "transitions": [
+      {
+       "round": 0,
+       "close_time_s": 0,
+       "votes": 24,
+       "trusted": 35,
+       "validations": 24,
+       "quorum": 24,
+       "threshold": 23,
+       "has_majority": true,
+       "ledger_majority": false,
+       "action": "got_majority"
+      },
+      {
+       "round": 1,
+       "close_time_s": 900,
+       "votes": 24,
+       "trusted": 35,
+       "validations": 24,
+       "quorum": 24,
+       "threshold": 23,
+       "has_majority": true,
+       "ledger_majority": true,
+       "action": "hold"
+      },
+      {
+       "round": 1344,
+       "close_time_s": 1209600,
+       "votes": 24,
+       "trusted": 35,
+       "validations": 24,
+       "quorum": 24,
+       "threshold": 23,
+       "has_majority": true,
+       "ledger_majority": true,
+       "action": "enable"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "blocking_table": [
+  {
+   "unl_size": 5,
+   "pre": {
+    "threshold": 3,
+    "min_passing_votes": 3,
+    "min_blocking_minority": 3
+   },
+   "post": {
+    "threshold": 3,
+    "min_passing_votes": 4,
+    "min_blocking_minority": 2
+   },
+   "validator_quorum": 4
+  },
+  {
+   "unl_size": 10,
+   "pre": {
+    "threshold": 7,
+    "min_passing_votes": 7,
+    "min_blocking_minority": 4
+   },
+   "post": {
+    "threshold": 6,
+    "min_passing_votes": 7,
+    "min_blocking_minority": 4
+   },
+   "validator_quorum": 7
+  },
+  {
+   "unl_size": 21,
+   "pre": {
+    "threshold": 16,
+    "min_passing_votes": 16,
+    "min_blocking_minority": 6
+   },
+   "post": {
+    "threshold": 14,
+    "min_passing_votes": 15,
+    "min_blocking_minority": 7
+   },
+   "validator_quorum": 15
+  },
+  {
+   "unl_size": 35,
+   "pre": {
+    "threshold": 27,
+    "min_passing_votes": 27,
+    "min_blocking_minority": 9
+   },
+   "post": {
+    "threshold": 23,
+    "min_passing_votes": 24,
+    "min_blocking_minority": 12
+   },
+   "validator_quorum": 24
+  },
+  {
+   "unl_size": 100,
+   "pre": {
+    "threshold": 79,
+    "min_passing_votes": 79,
+    "min_blocking_minority": 22
+   },
+   "post": {
+    "threshold": 67,
+    "min_passing_votes": 68,
+    "min_blocking_minority": 33
+   },
+   "validator_quorum": 67
+  }
+ ],
+ "totals": {
+  "scenarios": 13,
+  "runs": 18,
+  "enabled": 10,
+  "majority_lost": 3,
+  "never_majority": 5,
+  "quorum_gate_skip_runs": 1
+ }
+}
