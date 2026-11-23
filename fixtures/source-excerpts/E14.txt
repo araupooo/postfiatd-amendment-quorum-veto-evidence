@@ -1,0 +1,35 @@
+# Source excerpt E14 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55.
+# File: src/xrpld/app/misc/detail/AmendmentTable.cpp, lines 660-686.
+# Line numbers verified with grep -n on a local checkout of the pinned commit.
+# Source file SHA-256: 17442288c19bbf1cf0da1a85e596e3add6218757ec91a22f353cd03e2edbaf33
+# Source file git blob SHA: b13e40c3aed1ec8dbd9ec68a464caa5f512f113f
+# Source file size: 34890 bytes
+
+# --- src/xrpld/app/misc/detail/AmendmentTable.cpp lines 660-686 ---
+            else  // up-vote
+            {
+                AmendmentState& s = add(amend_hash, lock);
+
+                JLOG(j_.debug()) << "Amendment {" << *amendment_name << ", "
+                                 << amend_hash << "} is upvoted.";
+                if (!amendment_name->empty())
+                    s.name = *amendment_name;
+                // An obsolete amendment's vote can never be changed
+                if (s.vote != AmendmentVote::obsolete)
+                    s.vote = *vote;
+            }
+        });
+}
+
+AmendmentState&
+AmendmentTableImpl::add(
+    uint256 const& amendmentHash,
+    std::lock_guard<std::mutex> const&)
+{
+    // call with the mutex held
+    return amendmentMap_[amendmentHash];
+}
+
+AmendmentState*
+AmendmentTableImpl::get(
+    uint256 const& amendmentHash,

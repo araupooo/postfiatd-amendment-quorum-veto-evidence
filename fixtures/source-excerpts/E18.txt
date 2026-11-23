@@ -1,0 +1,15 @@
+# Source excerpt E18 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55.
+# File: src/xrpld/app/misc/detail/AmendmentTable.cpp, lines 840-846.
+# Line numbers verified with grep -n on a local checkout of the pinned commit.
+# Source file SHA-256: 17442288c19bbf1cf0da1a85e596e3add6218757ec91a22f353cd03e2edbaf33
+# Source file git blob SHA: b13e40c3aed1ec8dbd9ec68a464caa5f512f113f
+# Source file size: 34890 bytes
+
+# --- src/xrpld/app/misc/detail/AmendmentTable.cpp lines 840-846 ---
+AmendmentTableImpl::getDesired() const
+{
+    // Get the list of amendments we support and do not veto
+    return doValidation({});
+}
+
+std::map<uint256, std::uint32_t>

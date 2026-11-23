@@ -1,0 +1,42 @@
+# Source excerpt E19 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55.
+# File: src/xrpld/app/misc/detail/AmendmentTable.cpp, lines 847-880.
+# Line numbers verified with grep -n on a local checkout of the pinned commit.
+# Source file SHA-256: 17442288c19bbf1cf0da1a85e596e3add6218757ec91a22f353cd03e2edbaf33
+# Source file git blob SHA: b13e40c3aed1ec8dbd9ec68a464caa5f512f113f
+# Source file size: 34890 bytes
+
+# --- src/xrpld/app/misc/detail/AmendmentTable.cpp lines 847-880 ---
+AmendmentTableImpl::doVoting(
+    Rules const& rules,
+    NetClock::time_point closeTime,
+    std::set<uint256> const& enabledAmendments,
+    majorityAmendments_t const& majorityAmendments,
+    std::vector<std::shared_ptr<STValidation>> const& valSet)
+{
+    JLOG(j_.trace()) << "voting at " << closeTime.time_since_epoch().count()
+                     << ": " << enabledAmendments.size() << ", "
+                     << majorityAmendments.size() << ", " << valSet.size();
+
+    std::lock_guard lock(mutex_);
+
+    // Keep a record of the votes we received.
+    previousTrustedVotes_.recordVotes(rules, valSet, closeTime, j_, lock);
+
+    // Tally the most recent votes.
+    auto vote =
+        std::make_unique<AmendmentSet>(rules, previousTrustedVotes_, lock);
+    JLOG(j_.debug()) << "Counted votes from " << vote->trustedValidations()
+                     << " valid trusted validations, threshold is: "
+                     << vote->threshold();
+
+    // Map of amendments to the action to be taken for each one. The action is
+    // the value of the flags in the pseudo-transaction
+    std::map<uint256, std::uint32_t> actions;
+
+    // process all amendments we know of
+    for (auto const& entry : amendmentMap_)
+    {
+        if (enabledAmendments.contains(entry.first))
+        {
+            JLOG(j_.trace()) << entry.first << ": amendment already enabled";
+

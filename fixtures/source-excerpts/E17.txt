@@ -1,0 +1,35 @@
+# Source excerpt E17 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55.
+# File: src/xrpld/app/misc/detail/AmendmentTable.cpp, lines 813-839.
+# Line numbers verified with grep -n on a local checkout of the pinned commit.
+# Source file SHA-256: 17442288c19bbf1cf0da1a85e596e3add6218757ec91a22f353cd03e2edbaf33
+# Source file git blob SHA: b13e40c3aed1ec8dbd9ec68a464caa5f512f113f
+# Source file size: 34890 bytes
+
+# --- src/xrpld/app/misc/detail/AmendmentTable.cpp lines 813-839 ---
+AmendmentTableImpl::doValidation(std::set<uint256> const& enabled) const
+{
+    // Get the list of amendments we support and do not
+    // veto, but that are not already enabled
+    std::vector<uint256> amendments;
+
+    {
+        std::lock_guard lock(mutex_);
+        amendments.reserve(amendmentMap_.size());
+        for (auto const& e : amendmentMap_)
+        {
+            if (e.second.supported && e.second.vote == AmendmentVote::up &&
+                (enabled.count(e.first) == 0))
+            {
+                amendments.push_back(e.first);
+                JLOG(j_.info()) << "Voting for amendment " << e.second.name;
+            }
+        }
+    }
+
+    if (!amendments.empty())
+        std::sort(amendments.begin(), amendments.end());
+
+    return amendments;
+}
+
+std::vector<uint256>

@@ -1,0 +1,36 @@
+# Source excerpt E13 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55.
+# File: src/xrpld/app/misc/detail/AmendmentTable.cpp, lines 633-660.
+# Line numbers verified with grep -n on a local checkout of the pinned commit.
+# Source file SHA-256: 17442288c19bbf1cf0da1a85e596e3add6218757ec91a22f353cd03e2edbaf33
+# Source file git blob SHA: b13e40c3aed1ec8dbd9ec68a464caa5f512f113f
+# Source file size: 34890 bytes
+
+# --- src/xrpld/app/misc/detail/AmendmentTable.cpp lines 633-660 ---
+            uint256 amend_hash;
+            if (!amendment_hash || !amendment_name || !vote)
+            {
+                // These fields should never have nulls, but check
+                Throw<std::runtime_error>(
+                    "Invalid FeatureVotes row in wallet.db");
+            }
+            if (!amend_hash.parseHex(*amendment_hash))
+            {
+                Throw<std::runtime_error>(
+                    "Invalid amendment ID '" + *amendment_hash +
+                    " in wallet.db");
+            }
+            if (*vote == AmendmentVote::down)
+            {
+                // Unknown amendments are effectively vetoed already
+                if (auto s = get(amend_hash, lock))
+                {
+                    JLOG(j_.info()) << "Amendment {" << *amendment_name << ", "
+                                    << amend_hash << "} is downvoted.";
+                    if (!amendment_name->empty())
+                        s->name = *amendment_name;
+                    // An obsolete amendment's vote can never be changed
+                    if (s->vote != AmendmentVote::obsolete)
+                        s->vote = *vote;
+                }
+            }
+            else  // up-vote

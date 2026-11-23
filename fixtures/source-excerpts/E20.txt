@@ -1,0 +1,63 @@
+# Source excerpt E20 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55.
+# File: src/xrpld/app/misc/detail/AmendmentTable.cpp, lines 881-935.
+# Line numbers verified with grep -n on a local checkout of the pinned commit.
+# Source file SHA-256: 17442288c19bbf1cf0da1a85e596e3add6218757ec91a22f353cd03e2edbaf33
+# Source file git blob SHA: b13e40c3aed1ec8dbd9ec68a464caa5f512f113f
+# Source file size: 34890 bytes
+
+# --- src/xrpld/app/misc/detail/AmendmentTable.cpp lines 881-935 ---
+            continue;
+        }
+
+        bool const hasValMajority = vote->passes(entry.first);
+
+        auto const majorityTime = [&]() -> std::optional<NetClock::time_point> {
+            auto const it = majorityAmendments.find(entry.first);
+            if (it != majorityAmendments.end())
+                return it->second;
+            return std::nullopt;
+        }();
+
+        bool const hasLedgerMajority = majorityTime.has_value();
+
+        auto const logStr = [&entry, &vote]() {
+            std::stringstream ss;
+            ss << entry.first << " (" << entry.second.name << ") has "
+               << vote->votes(entry.first) << " votes";
+            return ss.str();
+        }();
+
+        if (hasValMajority && !hasLedgerMajority &&
+            entry.second.vote == AmendmentVote::up)
+        {
+            // Ledger says no majority, validators say yes, and voting yes
+            // locally
+            JLOG(j_.debug()) << logStr << ": amendment got majority";
+            actions[entry.first] = tfGotMajority;
+        }
+        else if (!hasValMajority && hasLedgerMajority)
+        {
+            // Ledger says majority, validators say no
+            JLOG(j_.debug()) << logStr << ": amendment lost majority";
+            actions[entry.first] = tfLostMajority;
+        }
+        else if (
+            hasLedgerMajority &&
+            ((*majorityTime + majorityTime_) <= closeTime) &&
+            entry.second.vote == AmendmentVote::up)
+        {
+            // Ledger says majority held
+            JLOG(j_.debug()) << logStr << ": amendment majority held";
+            actions[entry.first] = 0;
+        }
+        // Logging only below this point
+        else if (hasValMajority && hasLedgerMajority)
+        {
+            JLOG(j_.debug())
+                << logStr
+                << ": amendment holding majority, waiting to be enabled";
+        }
+        else if (!hasValMajority)
+        {
+            JLOG(j_.debug()) << logStr << ": amendment does not have majority";
+        }
