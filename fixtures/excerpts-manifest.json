@@ -1,0 +1,402 @@
+{
+ "pinned_commit": "0085a1ff885d6a446369cf73a4430f75af22be55",
+ "repo": "postfiatd",
+ "excerpts": [
+  {
+   "id": "E01",
+   "file": "include/xrpl/protocol/SystemParameters.h",
+   "start_line": 79,
+   "end_line": 88,
+   "anchor": "preFixAmendmentMajorityCalcThreshold",
+   "blob_sha": "48202928205df69ede2398618420d5585d82b3c4",
+   "blob_size": 3242
+  },
+  {
+   "id": "E02",
+   "file": "src/xrpld/app/misc/detail/AmendmentTable.cpp",
+   "start_line": 92,
+   "end_line": 120,
+   "anchor": "class TrustedVotes",
+   "blob_sha": "b13e40c3aed1ec8dbd9ec68a464caa5f512f113f",
+   "blob_size": 34890
+  },
+  {
+   "id": "E03",
+   "file": "src/xrpld/app/misc/detail/AmendmentTable.cpp",
+   "start_line": 120,
+   "end_line": 152,
+   "anchor": "trustChanged",
+   "blob_sha": "b13e40c3aed1ec8dbd9ec68a464caa5f512f113f",
+   "blob_size": 34890
+  },
+  {
+   "id": "E04",
+   "file": "src/xrpld/app/misc/detail/AmendmentTable.cpp",
+   "start_line": 153,
+   "end_line": 180,
+   "anchor": "recordVotes",
+   "blob_sha": "b13e40c3aed1ec8dbd9ec68a464caa5f512f113f",
+   "blob_size": 34890
+  },
+  {
+   "id": "E05",
+   "file": "src/xrpld/app/misc/detail/AmendmentTable.cpp",
+   "start_line": 186,
+   "end_line": 220,
+   "anchor": "sfAmendments",
+   "blob_sha": "b13e40c3aed1ec8dbd9ec68a464caa5f512f113f",
+   "blob_size": 34890
+  },
+  {
+   "id": "E06",
+   "file": "src/xrpld/app/misc/detail/AmendmentTable.cpp",
+   "start_line": 232,
+   "end_line": 266,
+   "anchor": "Timeout: Clearing votes",
+   "blob_sha": "b13e40c3aed1ec8dbd9ec68a464caa5f512f113f",
+   "blob_size": 34890
+  },
+  {
+   "id": "E07",
+   "file": "src/xrpld/app/misc/detail/AmendmentTable.cpp",
+   "start_line": 267,
+   "end_line": 286,
+   "anchor": "getVotes",
+   "blob_sha": "b13e40c3aed1ec8dbd9ec68a464caa5f512f113f",
+   "blob_size": 34890
+  },
+  {
+   "id": "E08",
+   "file": "src/xrpld/app/misc/detail/AmendmentTable.cpp",
+   "start_line": 289,
+   "end_line": 311,
+   "anchor": "one-way switch",
+   "blob_sha": "b13e40c3aed1ec8dbd9ec68a464caa5f512f113f",
+   "blob_size": 34890
+  },
+  {
+   "id": "E09",
+   "file": "src/xrpld/app/misc/detail/AmendmentTable.cpp",
+   "start_line": 313,
+   "end_line": 342,
+   "anchor": "computeThreshold",
+   "blob_sha": "b13e40c3aed1ec8dbd9ec68a464caa5f512f113f",
+   "blob_size": 34890
+  },
+  {
+   "id": "E10",
+   "file": "src/xrpld/app/misc/detail/AmendmentTable.cpp",
+   "start_line": 359,
+   "end_line": 378,
+   "anchor": "it->second > threshold_",
+   "blob_sha": "b13e40c3aed1ec8dbd9ec68a464caa5f512f113f",
+   "blob_size": 34890
+  },
+  {
+   "id": "E11",
+   "file": "src/xrpld/app/misc/detail/AmendmentTable.cpp",
+   "start_line": 380,
+   "end_line": 401,
+   "anchor": "trustedValidations",
+   "blob_sha": "b13e40c3aed1ec8dbd9ec68a464caa5f512f113f",
+   "blob_size": 34890
+  },
+  {
+   "id": "E12",
+   "file": "src/xrpld/app/misc/detail/AmendmentTable.cpp",
+   "start_line": 600,
+   "end_line": 630,
+   "anchor": "veto_amendments",
+   "blob_sha": "b13e40c3aed1ec8dbd9ec68a464caa5f512f113f",
+   "blob_size": 34890
+  },
+  {
+   "id": "E13",
+   "file": "src/xrpld/app/misc/detail/AmendmentTable.cpp",
+   "start_line": 633,
+   "end_line": 660,
+   "anchor": "Invalid FeatureVotes row",
+   "blob_sha": "b13e40c3aed1ec8dbd9ec68a464caa5f512f113f",
+   "blob_size": 34890
+  },
+  {
+   "id": "E14",
+   "file": "src/xrpld/app/misc/detail/AmendmentTable.cpp",
+   "start_line": 660,
+   "end_line": 686,
+   "anchor": "never be changed",
+   "blob_sha": "b13e40c3aed1ec8dbd9ec68a464caa5f512f113f",
+   "blob_size": 34890
+  },
+  {
+   "id": "E15",
+   "file": "src/xrpld/app/misc/detail/AmendmentTable.cpp",
+   "start_line": 736,
+   "end_line": 760,
+   "anchor": "AmendmentTableImpl::veto",
+   "blob_sha": "b13e40c3aed1ec8dbd9ec68a464caa5f512f113f",
+   "blob_size": 34890
+  },
+  {
+   "id": "E16",
+   "file": "src/xrpld/app/misc/detail/AmendmentTable.cpp",
+   "start_line": 762,
+   "end_line": 812,
+   "anchor": "AmendmentTableImpl::enable",
+   "blob_sha": "b13e40c3aed1ec8dbd9ec68a464caa5f512f113f",
+   "blob_size": 34890
+  },
+  {
+   "id": "E17",
+   "file": "src/xrpld/app/misc/detail/AmendmentTable.cpp",
+   "start_line": 813,
+   "end_line": 839,
+   "anchor": "Voting for amendment",
+   "blob_sha": "b13e40c3aed1ec8dbd9ec68a464caa5f512f113f",
+   "blob_size": 34890
+  },
+  {
+   "id": "E18",
+   "file": "src/xrpld/app/misc/detail/AmendmentTable.cpp",
+   "start_line": 840,
+   "end_line": 846,
+   "anchor": "getDesired",
+   "blob_sha": "b13e40c3aed1ec8dbd9ec68a464caa5f512f113f",
+   "blob_size": 34890
+  },
+  {
+   "id": "E19",
+   "file": "src/xrpld/app/misc/detail/AmendmentTable.cpp",
+   "start_line": 847,
+   "end_line": 880,
+   "anchor": "Counted votes from",
+   "blob_sha": "b13e40c3aed1ec8dbd9ec68a464caa5f512f113f",
+   "blob_size": 34890
+  },
+  {
+   "id": "E20",
+   "file": "src/xrpld/app/misc/detail/AmendmentTable.cpp",
+   "start_line": 881,
+   "end_line": 935,
+   "anchor": "tfGotMajority",
+   "blob_sha": "b13e40c3aed1ec8dbd9ec68a464caa5f512f113f",
+   "blob_size": 34890
+  },
+  {
+   "id": "E21",
+   "file": "src/xrpld/app/misc/detail/AmendmentTable.cpp",
+   "start_line": 943,
+   "end_line": 990,
+   "anchor": "needValidatedLedger",
+   "blob_sha": "b13e40c3aed1ec8dbd9ec68a464caa5f512f113f",
+   "blob_size": 34890
+  },
+  {
+   "id": "E22",
+   "file": "src/xrpld/app/misc/detail/AmendmentTable.cpp",
+   "start_line": 997,
+   "end_line": 1033,
+   "anchor": "injectJson",
+   "blob_sha": "b13e40c3aed1ec8dbd9ec68a464caa5f512f113f",
+   "blob_size": 34890
+  },
+  {
+   "id": "E23",
+   "file": "src/xrpld/app/misc/AmendmentTable.h",
+   "start_line": 40,
+   "end_line": 70,
+   "anchor": "veto",
+   "blob_sha": "deb0386236cd5ed0ee210d8aeae50f582cd7b586",
+   "blob_size": 6822
+  },
+  {
+   "id": "E24",
+   "file": "src/xrpld/app/misc/AmendmentTable.h",
+   "start_line": 100,
+   "end_line": 145,
+   "anchor": "doValidatedLedger",
+   "blob_sha": "deb0386236cd5ed0ee210d8aeae50f582cd7b586",
+   "blob_size": 6822
+  },
+  {
+   "id": "E25",
+   "file": "src/xrpld/app/misc/AmendmentTable.h",
+   "start_line": 146,
+   "end_line": 185,
+   "anchor": "ttAMENDMENT",
+   "blob_sha": "deb0386236cd5ed0ee210d8aeae50f582cd7b586",
+   "blob_size": 6822
+  },
+  {
+   "id": "E26",
+   "file": "src/xrpld/app/ledger/Ledger.h",
+   "start_line": 420,
+   "end_line": 432,
+   "anchor": "FLAG_LEDGER_INTERVAL",
+   "blob_sha": "552f59ff19c171d8e216b2761cc0a4e8f928f1dd",
+   "blob_size": 12026
+  },
+  {
+   "id": "E27",
+   "file": "src/xrpld/app/ledger/Ledger.cpp",
+   "start_line": 968,
+   "end_line": 986,
+   "anchor": "isFlagLedger",
+   "blob_sha": "26552704258627756361a07e0c85a260ed229321",
+   "blob_size": 33022
+  },
+  {
+   "id": "E28",
+   "file": "src/xrpld/app/consensus/RCLConsensus.cpp",
+   "start_line": 355,
+   "end_line": 390,
+   "anchor": "isFlagLedger",
+   "blob_sha": "457555cc1c83cb617a6838e0099fc93e1d715b49",
+   "blob_size": 37567
+  },
+  {
+   "id": "E29",
+   "file": "src/xrpld/app/consensus/RCLConsensus.cpp",
+   "start_line": 895,
+   "end_line": 920,
+   "anchor": "isVotingLedger",
+   "blob_sha": "457555cc1c83cb617a6838e0099fc93e1d715b49",
+   "blob_size": 37567
+  },
+  {
+   "id": "E30",
+   "file": "src/xrpld/app/tx/detail/Change.cpp",
+   "start_line": 286,
+   "end_line": 312,
+   "anchor": "applyAmendment",
+   "blob_sha": "9079934b0434c4a43e3979e0d257b29962d1c132",
+   "blob_size": 25990
+  },
+  {
+   "id": "E31",
+   "file": "src/xrpld/app/tx/detail/Change.cpp",
+   "start_line": 313,
+   "end_line": 345,
+   "anchor": "tefALREADY",
+   "blob_sha": "9079934b0434c4a43e3979e0d257b29962d1c132",
+   "blob_size": 25990
+  },
+  {
+   "id": "E32",
+   "file": "src/xrpld/app/tx/detail/Change.cpp",
+   "start_line": 346,
+   "end_line": 380,
+   "anchor": "No flags, enable amendment",
+   "blob_sha": "9079934b0434c4a43e3979e0d257b29962d1c132",
+   "blob_size": 25990
+  },
+  {
+   "id": "E33",
+   "file": "src/libxrpl/ledger/View.cpp",
+   "start_line": 1000,
+   "end_line": 1040,
+   "anchor": "getMajorityAmendments",
+   "blob_sha": "2a1cb0cab5cb95a643ff1d0322192868b0aeb55f",
+   "blob_size": 123511
+  },
+  {
+   "id": "E34",
+   "file": "src/xrpld/app/misc/detail/ValidatorList.cpp",
+   "start_line": 1845,
+   "end_line": 1875,
+   "anchor": "calculateQuorum",
+   "blob_sha": "861e2112c1f9355e03b9e42a7565cf6f37cf8c2e",
+   "blob_size": 72746
+  },
+  {
+   "id": "E35",
+   "file": "src/xrpld/app/misc/detail/ValidatorList.cpp",
+   "start_line": 1895,
+   "end_line": 1935,
+   "anchor": "67% quorum",
+   "blob_sha": "861e2112c1f9355e03b9e42a7565cf6f37cf8c2e",
+   "blob_size": 72746
+  },
+  {
+   "id": "E36",
+   "file": "src/xrpld/app/misc/ValidatorList.h",
+   "start_line": 490,
+   "end_line": 510,
+   "anchor": "quorum()",
+   "blob_sha": "b610dd81dc479895973ed48756e1803f93b3c95c",
+   "blob_size": 30156
+  },
+  {
+   "id": "E37",
+   "file": "include/xrpl/protocol/detail/features.macro",
+   "start_line": 100,
+   "end_line": 108,
+   "anchor": "AmendmentMajorityCalc",
+   "blob_sha": "a88ebd1a492b9b5d658bde9c5f2835094536b244",
+   "blob_size": 10479
+  },
+  {
+   "id": "E38",
+   "file": "include/xrpl/protocol/TxFlags.h",
+   "start_line": 125,
+   "end_line": 132,
+   "anchor": "tfGotMajority",
+   "blob_sha": "9aece5eb2243b5cf6e4184964b21771e85621873",
+   "blob_size": 16701
+  },
+  {
+   "id": "E39",
+   "file": "src/xrpld/core/Config.h",
+   "start_line": 245,
+   "end_line": 250,
+   "anchor": "AMENDMENT_MAJORITY_TIME",
+   "blob_sha": "06cd0d24d8630d55affbbbf76ddcf766863659fc",
+   "blob_size": 13386
+  },
+  {
+   "id": "E40",
+   "file": "src/xrpld/app/ledger/detail/LedgerMaster.cpp",
+   "start_line": 305,
+   "end_line": 345,
+   "anchor": "hasUnsupportedEnabled",
+   "blob_sha": "67826c253286c69622334382ac89db711c7a60d2",
+   "blob_size": 70382
+  },
+  {
+   "id": "E41",
+   "file": "src/xrpld/app/misc/NetworkOPs.cpp",
+   "start_line": 1835,
+   "end_line": 1850,
+   "anchor": "setAmendmentBlocked",
+   "blob_sha": "57331a855843f0a528289fb3a96f3251926a3aa5",
+   "blob_size": 158487
+  },
+  {
+   "id": "E42",
+   "file": "src/libxrpl/protocol/Feature.cpp",
+   "start_line": 76,
+   "end_line": 82,
+   "anchor": "DefaultYes",
+   "blob_sha": "eeeee1c185729232c5c5199c349465eb9f5f28ed",
+   "blob_size": 14194
+  },
+  {
+   "id": "E43",
+   "file": "src/libxrpl/protocol/Feature.cpp",
+   "start_line": 250,
+   "end_line": 290,
+   "anchor": "Must be supported to be up-voted",
+   "blob_sha": "eeeee1c185729232c5c5199c349465eb9f5f28ed",
+   "blob_size": 14194
+  },
+  {
+   "id": "E44",
+   "file": "src/xrpld/app/misc/detail/AmendmentTable.cpp",
+   "start_line": 536,
+   "end_line": 560,
+   "anchor": "majorityTime_",
+   "blob_sha": "b13e40c3aed1ec8dbd9ec68a464caa5f512f113f",
+   "blob_size": 34890
+  }
+ ]
+}
