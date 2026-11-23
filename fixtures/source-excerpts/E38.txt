@@ -1,0 +1,16 @@
+# Source excerpt E38 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55.
+# File: include/xrpl/protocol/TxFlags.h, lines 125-132.
+# Line numbers verified with grep -n on a local checkout of the pinned commit.
+# Source file SHA-256: 71d6184a9804c5deb7a4aa39bbc682e4f23f16d3c7cdeede59ea3ea8d2c74196
+# Source file git blob SHA: 9aece5eb2243b5cf6e4184964b21771e85621873
+# Source file size: 16701 bytes
+
+# --- include/xrpl/protocol/TxFlags.h lines 125-132 ---
+constexpr std::uint32_t tfTrustSetPermissionMask = ~(tfUniversal | tfSetfAuth | tfSetFreeze | tfClearFreeze);
+
+// EnableAmendment flags:
+constexpr std::uint32_t tfGotMajority                      = 0x00010000;
+constexpr std::uint32_t tfLostMajority                     = 0x00020000;
+constexpr std::uint32_t tfChangeMask =
+    ~( tfUniversal | tfGotMajority | tfLostMajority);
+

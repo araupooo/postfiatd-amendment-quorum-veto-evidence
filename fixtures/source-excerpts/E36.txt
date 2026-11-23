@@ -1,0 +1,29 @@
+# Source excerpt E36 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55.
+# File: src/xrpld/app/misc/ValidatorList.h, lines 490-510.
+# Line numbers verified with grep -n on a local checkout of the pinned commit.
+# Source file SHA-256: 574b96520e38999a3a3ecd9d326a39ad02f0a1511a72f95a7f86fc34e46f1496
+# Source file git blob SHA: b610dd81dc479895973ed48756e1803f93b3c95c
+# Source file size: 30156 bytes
+
+# --- src/xrpld/app/misc/ValidatorList.h lines 490-510 ---
+        HashRouter& hashRouter);
+
+    /** Get quorum value for current trusted key set
+
+        The quorum is the minimum number of validations needed for a ledger to
+        be fully validated. It can change when the set of trusted validation
+        keys is updated (at the start of each consensus round) and primarily
+        depends on the number of trusted keys.
+
+        @par Thread Safety
+
+        May be called concurrently
+
+        @return quorum value
+    */
+    std::size_t
+    quorum() const
+    {
+        return quorum_;
+    }
+

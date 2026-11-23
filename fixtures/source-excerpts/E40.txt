@@ -1,0 +1,49 @@
+# Source excerpt E40 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55.
+# File: src/xrpld/app/ledger/detail/LedgerMaster.cpp, lines 305-345.
+# Line numbers verified with grep -n on a local checkout of the pinned commit.
+# Source file SHA-256: eff20a953d6b6fafe7ca44a2999a4c90c5ef62eea82e43baed8ba3e959da5ef1
+# Source file git blob SHA: 67826c253286c69622334382ac89db711c7a60d2
+# Source file size: 70382 bytes
+
+# --- src/xrpld/app/ledger/detail/LedgerMaster.cpp lines 305-345 ---
+        auto& validatorExclusionManager = app_.getValidatorExclusionManager();
+        validatorExclusionManager.initialize(*valKey, *l);
+    }
+
+    if (!app_.getOPs().isBlocked())
+    {
+        if (app_.getAmendmentTable().hasUnsupportedEnabled())
+        {
+            JLOG(m_journal.error()) << "One or more unsupported amendments "
+                                       "activated: server blocked.";
+            app_.getOPs().setAmendmentBlocked();
+        }
+        else if (!app_.getOPs().isAmendmentWarned() || l->isFlagLedger())
+        {
+            // Amendments can lose majority, so re-check periodically (every
+            // flag ledger), and clear the flag if appropriate. If an unknown
+            // amendment gains majority log a warning as soon as it's
+            // discovered, then again every flag ledger until the operator
+            // upgrades, the amendment loses majority, or the amendment goes
+            // live and the node gets blocked. Unlike being amendment blocked,
+            // this message may be logged more than once per session, because
+            // the node will otherwise function normally, and this gives
+            // operators an opportunity to see and resolve the warning.
+            if (auto const first =
+                    app_.getAmendmentTable().firstUnsupportedExpected())
+            {
+                JLOG(m_journal.error()) << "One or more unsupported amendments "
+                                           "reached majority. Upgrade before "
+                                        << to_string(*first)
+                                        << " to prevent your server from "
+                                           "becoming amendment blocked.";
+                app_.getOPs().setAmendmentWarned();
+            }
+            else
+                app_.getOPs().clearAmendmentWarned();
+        }
+    }
+}
+
+void
+LedgerMaster::setPubLedger(std::shared_ptr<Ledger const> const& l)

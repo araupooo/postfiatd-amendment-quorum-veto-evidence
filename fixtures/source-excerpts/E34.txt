@@ -1,0 +1,39 @@
+# Source excerpt E34 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55.
+# File: src/xrpld/app/misc/detail/ValidatorList.cpp, lines 1845-1875.
+# Line numbers verified with grep -n on a local checkout of the pinned commit.
+# Source file SHA-256: a1499c9c0f43be56ea657b2940701a38898117fb0dbdf83cf481de65cad503d4
+# Source file git blob SHA: 861e2112c1f9355e03b9e42a7565cf6f37cf8c2e
+# Source file size: 72746 bytes
+
+# --- src/xrpld/app/misc/detail/ValidatorList.cpp lines 1845-1875 ---
+ValidatorList::calculateQuorum(
+    std::size_t unlSize,
+    std::size_t effectiveUnlSize,
+    std::size_t seenSize)
+{
+    // Use quorum if specified via command line.
+    if (minimumQuorum_ > 0)
+    {
+        JLOG(j_.warn()) << "Using potentially unsafe quorum of "
+                        << *minimumQuorum_
+                        << " as specified on the command line";
+        return *minimumQuorum_;
+    }
+
+    if (!publisherLists_.empty())
+    {
+        // Do not use achievable quorum until lists from a sufficient number of
+        // configured publishers are available
+        std::size_t unavailable = 0;
+        for (auto const& list : publisherLists_)
+        {
+            if (list.second.status != PublisherStatus::available)
+                unavailable += 1;
+        }
+        // There are two, subtly different, sides to list threshold:
+        //
+        // 1. The minimum required intersection between lists listThreshold_
+        //    for a validator to be included in trustedMasterKeys_.
+        //    If this many (or more) publishers are unavailable, we are likely
+        //    to NOT include a validator which otherwise would have been used.
+        //    We disable quorum if this happens.
