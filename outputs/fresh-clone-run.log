@@ -1,0 +1,10 @@
+# run.log — deterministic output digests (no timestamps, no absolute paths)
+# step extract_excerpts: pass
+# step amendment_model_config: pass
+# step simulator: pass
+# step probe: pass
+cb72896d37c1143cb648e6a538bed42f5f00a5e294b8a1a1b1d2e5816e01805a  outputs/derived/amendment-results.json
+39b8bdfafead3bb4dbcb18fc46e0dec8bfa04383c5b5f0603388a84e1824ae33  outputs/derived/probe-results.json
+3b23873e3da2c6800e9e6e7dd1019a76a50c90ab2a6a6abcf52aa89346cd1a11  outputs/derived/run-summary.json
+96684aa1a65fa5a0e1492382bf366b8c1c7deb57f3192af0f4c528b301d82262  outputs/derived/scenario-matrix.json
+410a95a70329eab3a35cf351bd0eaa97db573e29cb5495804fd34663bdf08301  outputs/probe-run.log

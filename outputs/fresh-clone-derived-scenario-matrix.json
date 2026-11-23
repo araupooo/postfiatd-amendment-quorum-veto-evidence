@@ -1,0 +1,206 @@
+{
+ "pack": "Amendment Voting Quorum and Veto in postfiatd",
+ "pinned_commit": "0085a1ff885d6a446369cf73a4430f75af22be55",
+ "flag_interval_s": 900,
+ "majority_time_s": 1209600,
+ "rows": [
+  {
+   "scenario": "S-01",
+   "run": "A",
+   "regime": "pre",
+   "outcome": "enabled",
+   "majority_round": 0,
+   "enabled_round": 1344,
+   "delay_rounds": 0,
+   "min_passing_votes": 27,
+   "min_blocking_minority": 9
+  },
+  {
+   "scenario": "S-01",
+   "run": "B",
+   "regime": "pre",
+   "outcome": "never_majority",
+   "majority_round": null,
+   "enabled_round": null,
+   "delay_rounds": null,
+   "min_passing_votes": 27,
+   "min_blocking_minority": 9
+  },
+  {
+   "scenario": "S-02",
+   "run": "A",
+   "regime": "post",
+   "outcome": "enabled",
+   "majority_round": 0,
+   "enabled_round": 1344,
+   "delay_rounds": 0,
+   "min_passing_votes": 24,
+   "min_blocking_minority": 12
+  },
+  {
+   "scenario": "S-02",
+   "run": "B",
+   "regime": "post",
+   "outcome": "never_majority",
+   "majority_round": null,
+   "enabled_round": null,
+   "delay_rounds": null,
+   "min_passing_votes": 24,
+   "min_blocking_minority": 12
+  },
+  {
+   "scenario": "S-03",
+   "run": "A",
+   "regime": "post",
+   "outcome": "enabled",
+   "majority_round": 0,
+   "enabled_round": 1344,
+   "delay_rounds": 0,
+   "min_passing_votes": 24,
+   "min_blocking_minority": 12
+  },
+  {
+   "scenario": "S-03",
+   "run": "B",
+   "regime": "post",
+   "outcome": "never_majority",
+   "majority_round": null,
+   "enabled_round": null,
+   "delay_rounds": null,
+   "min_passing_votes": 24,
+   "min_blocking_minority": 12
+  },
+  {
+   "scenario": "S-04",
+   "run": "A",
+   "regime": "post",
+   "outcome": "enabled",
+   "majority_round": 0,
+   "enabled_round": 2305,
+   "delay_rounds": 961,
+   "min_passing_votes": 24,
+   "min_blocking_minority": 12
+  },
+  {
+   "scenario": "S-05",
+   "run": "A",
+   "regime": "post",
+   "outcome": "majority_lost",
+   "majority_round": 0,
+   "enabled_round": null,
+   "delay_rounds": null,
+   "min_passing_votes": 24,
+   "min_blocking_minority": 12
+  },
+  {
+   "scenario": "S-06",
+   "run": "A",
+   "regime": "post",
+   "outcome": "enabled",
+   "majority_round": 0,
+   "enabled_round": 1344,
+   "delay_rounds": 0,
+   "min_passing_votes": 21,
+   "min_blocking_minority": 10
+  },
+  {
+   "scenario": "S-07",
+   "run": "A",
+   "regime": "post",
+   "outcome": "majority_lost",
+   "majority_round": 0,
+   "enabled_round": null,
+   "delay_rounds": null,
+   "min_passing_votes": 20,
+   "min_blocking_minority": 10
+  },
+  {
+   "scenario": "S-08",
+   "run": "A",
+   "regime": "post",
+   "outcome": "enabled",
+   "majority_round": 0,
+   "enabled_round": 1344,
+   "delay_rounds": 0,
+   "min_passing_votes": 1,
+   "min_blocking_minority": 1
+  },
+  {
+   "scenario": "S-09",
+   "run": "A",
+   "regime": "pre",
+   "outcome": "enabled",
+   "majority_round": 0,
+   "enabled_round": 1344,
+   "delay_rounds": 0,
+   "min_passing_votes": 3,
+   "min_blocking_minority": 3
+  },
+  {
+   "scenario": "S-09",
+   "run": "B",
+   "regime": "post",
+   "outcome": "never_majority",
+   "majority_round": null,
+   "enabled_round": null,
+   "delay_rounds": null,
+   "min_passing_votes": 4,
+   "min_blocking_minority": 2
+  },
+  {
+   "scenario": "S-10",
+   "run": "A",
+   "regime": "pre",
+   "outcome": "enabled",
+   "majority_round": 0,
+   "enabled_round": 1544,
+   "delay_rounds": 200,
+   "min_passing_votes": 27,
+   "min_blocking_minority": 9
+  },
+  {
+   "scenario": "S-11",
+   "run": "A",
+   "regime": "post",
+   "outcome": "majority_lost",
+   "majority_round": 0,
+   "enabled_round": null,
+   "delay_rounds": null,
+   "min_passing_votes": 24,
+   "min_blocking_minority": 12
+  },
+  {
+   "scenario": "S-12",
+   "run": "A",
+   "regime": "post",
+   "outcome": "enabled",
+   "majority_round": 0,
+   "enabled_round": 1344,
+   "delay_rounds": 0,
+   "min_passing_votes": 24,
+   "min_blocking_minority": 12
+  },
+  {
+   "scenario": "S-13",
+   "run": "A",
+   "regime": "post",
+   "outcome": "never_majority",
+   "majority_round": null,
+   "enabled_round": null,
+   "delay_rounds": null,
+   "min_passing_votes": 24,
+   "min_blocking_minority": 12
+  },
+  {
+   "scenario": "S-13",
+   "run": "B",
+   "regime": "post",
+   "outcome": "enabled",
+   "majority_round": 0,
+   "enabled_round": 1344,
+   "delay_rounds": 0,
+   "min_passing_votes": 24,
+   "min_blocking_minority": 12
+  }
+ ]
+}

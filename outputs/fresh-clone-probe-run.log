@@ -1,0 +1,16 @@
+PASS A-00 pinned checkout HEAD equals the pinned commit — HEAD=0085a1ff885d6a446369cf73a4430f75af22be55
+PASS A-01 45 rules: 38 VERIFIED anchors inside cited ranges, 4 SPECIFIED (external URLs), 2 MODELLED, 1 UNTESTABLE, none with a faked source — counts={'MODELLED': 2, 'SPECIFIED': 4, 'UNTESTABLE': 1, 'VERIFIED': 38}
+PASS B-01 per-scenario arithmetic reconciles; totals 13 scenarios / 18 runs / enabled 10 / majority_lost 3 / never_majority 5 / quorum_gate_skip_runs 1; matrix rows == runs; delays consistent — totals={'scenarios': 13, 'runs': 18, 'enabled': 10, 'majority_lost': 3, 'never_majority': 5, 'quorum_gate_skip_runs': 1} outcomes={'enabled': 10, 'never_majority': 5, 'majority_lost': 3}
+PASS C-01 threshold math re-derived for UNL 5/10/21/35/100 in both regimes (threshold, min passing votes, min blocking minority, validator quorum) — all match
+PASS D-01 204/256 (SystemParameters.h:83), 67/100 (:85), weeks{2} (:88), FLAG_LEDGER_INTERVAL = 256 (Ledger.h:426), tfGotMajority (TxFlags.h:128), AMENDMENT_MAJORITY_TIME (Config.h:248) — all 6 tokens at recorded lines
+PASS E-01 67% quorum comment (ValidatorList.cpp:1897-1900) and formula max(ceil(0.67), ceil(0.6)) (:1934) — comment+formula verified
+PASS F-01 matrix == results == scenarios (13); findings 12, claims 24 (16/2/4/2), risks 14, gaps 8; excerpts 44 across 16 files agree across manifest, files, hashes — claims=24 risks=14 gaps=8 excerpts=44
+PASS G-01 determinism: simulator re-run reproduces byte-identical results and matrix (full SHA-256) — results shipped=cb72896d37c1143cb648e6a538bed42f5f00a5e294b8a1a1b1d2e5816e01805a rerun=cb72896d37c1143cb648e6a538bed42f5f00a5e294b8a1a1b1d2e5816e01805a; matrix shipped=96684aa1a65fa5a0e1492382bf366b8c1c7deb57f3192af0f4c528b301d82262 rerun=96684aa1a65fa5a0e1492382bf366b8c1c7deb57f3192af0f4c528b301d82262
+PASS H-01 every excerpt digest matches source-hashes.json; every manifest blob SHA/size matches the checkout; run-manifest digests match shipped derived files — manifest digests match
+PASS I-01 absence findings re-grepped: kAmendmentMajorityCalcThreshold 0 hits; tfEnableAmendment 0 hits; '0.8' literal 0 hits in AmendmentTable.cpp — kAmendmentMajorityCalcThreshold=0 tfEnableAmendment=0 0.8=0
+PASS J-01 post-fix ratio is 67/100 and pre-fix 204/256 (no 80 in the threshold lines); '80%' appears only in the docs citations, never as a code threshold — divergence tokens verified
+PASS T-01 timing sanity: total probe elapsed_ms is non-negative (loose band, never exact) — value not recorded; never compared
+probe: 12/12 checks PASS
+probe: amendment-results.json sha256: cb72896d37c1143cb648e6a538bed42f5f00a5e294b8a1a1b1d2e5816e01805a
+probe: scenario-matrix.json sha256: 96684aa1a65fa5a0e1492382bf366b8c1c7deb57f3192af0f4c528b301d82262
+probe: pinned commit 0085a1ff885d6a446369cf73a4430f75af22be55
