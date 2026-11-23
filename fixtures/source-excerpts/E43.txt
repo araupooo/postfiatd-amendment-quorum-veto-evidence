@@ -1,0 +1,49 @@
+# Source excerpt E43 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55.
+# File: src/libxrpl/protocol/Feature.cpp, lines 250-290.
+# Line numbers verified with grep -n on a local checkout of the pinned commit.
+# Source file SHA-256: 01adccf826614b489c1db5b091623c44f4981b4f94a6d404c108522d4bf54b7c
+# Source file git blob SHA: eeeee1c185729232c5c5199c349465eb9f5f28ed
+# Source file size: 14194 bytes
+
+# --- src/libxrpl/protocol/Feature.cpp lines 250-290 ---
+FeatureCollections::registerFeature(
+    std::string const& name,
+    Supported support,
+    VoteBehavior vote)
+{
+    check(!readOnly, "Attempting to register a feature after startup.");
+    check(
+        support == Supported::yes || vote == VoteBehavior::DefaultNo,
+        "Invalid feature parameters. Must be supported to be up-voted.");
+    Feature const* i = getByName(name);
+    if (!i)
+    {
+        check(
+            features.size() < detail::numFeatures,
+            "More features defined than allocated.");
+
+        auto const f = sha512Half(Slice(name.data(), name.size()));
+
+        features.emplace_back(name, f);
+
+        auto const getAmendmentSupport = [=]() {
+            if (vote == VoteBehavior::Obsolete)
+                return AmendmentSupport::Retired;
+            return support == Supported::yes ? AmendmentSupport::Supported
+                                             : AmendmentSupport::Unsupported;
+        };
+        all.emplace(name, getAmendmentSupport());
+
+        if (support == Supported::yes)
+        {
+            supported.emplace(name, vote);
+
+            if (vote == VoteBehavior::DefaultYes)
+                ++upVotes;
+            else
+                ++downVotes;
+        }
+        check(
+            upVotes + downVotes == supported.size(),
+            "Feature counting logic broke");
+        check(
