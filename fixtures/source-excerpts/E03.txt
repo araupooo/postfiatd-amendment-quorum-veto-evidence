@@ -1,0 +1,41 @@
+# Source excerpt E03 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55.
+# File: src/xrpld/app/misc/detail/AmendmentTable.cpp, lines 120-152.
+# Line numbers verified with grep -n on a local checkout of the pinned commit.
+# Source file SHA-256: 17442288c19bbf1cf0da1a85e596e3add6218757ec91a22f353cd03e2edbaf33
+# Source file git blob SHA: b13e40c3aed1ec8dbd9ec68a464caa5f512f113f
+# Source file size: 34890 bytes
+
+# --- src/xrpld/app/misc/detail/AmendmentTable.cpp lines 120-152 ---
+    trustChanged(
+        hash_set<PublicKey> const& allTrusted,
+        std::lock_guard<std::mutex> const& lock)
+    {
+        decltype(recordedVotes_) newRecordedVotes;
+        newRecordedVotes.reserve(allTrusted.size());
+
+        // Make sure every PublicKey in allTrusted is represented in
+        // recordedVotes_.  Also make sure recordedVotes_ contains
+        // no additional PublicKeys.
+        for (auto& trusted : allTrusted)
+        {
+            if (recordedVotes_.contains(trusted))
+            {
+                // Preserve this validator's previously saved voting state.
+                newRecordedVotes.insert(recordedVotes_.extract(trusted));
+            }
+            else
+            {
+                // New validators have a starting position of no on everything.
+                // Add the entry with an empty vector and unseated timeout.
+                newRecordedVotes[trusted];
+            }
+        }
+        // The votes of any no-longer-trusted validators will be destroyed
+        // when changedTrustedVotes goes out of scope.
+        recordedVotes_.swap(newRecordedVotes);
+    }
+
+    // Called when we receive the latest votes.
+    //
+    // Call with AmendmentTable::mutex_ locked.
+    void

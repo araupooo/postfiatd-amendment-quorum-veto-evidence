@@ -1,0 +1,28 @@
+# Source excerpt E07 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55.
+# File: src/xrpld/app/misc/detail/AmendmentTable.cpp, lines 267-286.
+# Line numbers verified with grep -n on a local checkout of the pinned commit.
+# Source file SHA-256: 17442288c19bbf1cf0da1a85e596e3add6218757ec91a22f353cd03e2edbaf33
+# Source file git blob SHA: b13e40c3aed1ec8dbd9ec68a464caa5f512f113f
+# Source file size: 34890 bytes
+
+# --- src/xrpld/app/misc/detail/AmendmentTable.cpp lines 267-286 ---
+    getVotes(Rules const& rules, std::lock_guard<std::mutex> const& lock) const
+    {
+        hash_map<uint256, int> ret;
+        int available = 0;
+        for (auto& validatorVotes : recordedVotes_)
+        {
+            XRPL_ASSERT(
+                validatorVotes.second.timeout ||
+                    validatorVotes.second.upVotes.empty(),
+                "ripple::TrustedVotes::getVotes : valid votes");
+            if (validatorVotes.second.timeout)
+                ++available;
+            for (uint256 const& amendment : validatorVotes.second.upVotes)
+            {
+                ret[amendment] += 1;
+            }
+        }
+        return {available, ret};
+    }
+};

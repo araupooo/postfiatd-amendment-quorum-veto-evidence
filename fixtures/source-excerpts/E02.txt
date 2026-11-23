@@ -1,0 +1,37 @@
+# Source excerpt E02 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55.
+# File: src/xrpld/app/misc/detail/AmendmentTable.cpp, lines 92-120.
+# Line numbers verified with grep -n on a local checkout of the pinned commit.
+# Source file SHA-256: 17442288c19bbf1cf0da1a85e596e3add6218757ec91a22f353cd03e2edbaf33
+# Source file git blob SHA: b13e40c3aed1ec8dbd9ec68a464caa5f512f113f
+# Source file size: 34890 bytes
+
+# --- src/xrpld/app/misc/detail/AmendmentTable.cpp lines 92-120 ---
+*/
+class TrustedVotes
+{
+private:
+    // Associates each trusted validator with the last votes we saw from them
+    // and an expiration for that record.
+    struct UpvotesAndTimeout
+    {
+        std::vector<uint256> upVotes;
+        /** An unseated timeout indicates that either
+            1. No validations have ever been received
+            2. The validator has not been heard from in long enough that the
+               timeout passed, and votes expired.
+         */
+        std::optional<NetClock::time_point> timeout;
+    };
+    hash_map<PublicKey, UpvotesAndTimeout> recordedVotes_;
+
+public:
+    TrustedVotes() = default;
+    TrustedVotes(TrustedVotes const& rhs) = delete;
+    TrustedVotes&
+    operator=(TrustedVotes const& rhs) = delete;
+
+    // Called when the list of trusted validators changes.
+    //
+    // Call with AmendmentTable::mutex_ locked.
+    void
+    trustChanged(

@@ -1,0 +1,38 @@
+# Source excerpt E09 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55.
+# File: src/xrpld/app/misc/detail/AmendmentTable.cpp, lines 313-342.
+# Line numbers verified with grep -n on a local checkout of the pinned commit.
+# Source file SHA-256: 17442288c19bbf1cf0da1a85e596e3add6218757ec91a22f353cd03e2edbaf33
+# Source file git blob SHA: b13e40c3aed1ec8dbd9ec68a464caa5f512f113f
+# Source file size: 34890 bytes
+
+# --- src/xrpld/app/misc/detail/AmendmentTable.cpp lines 313-342 ---
+/** The status of all amendments requested in a given window. */
+class AmendmentSet
+{
+private:
+    // How many yes votes each amendment received
+    hash_map<uint256, int> votes_;
+    Rules const& rules_;
+    // number of trusted validations
+    int trustedValidations_ = 0;
+    // number of votes needed
+    int threshold_ = 0;
+
+    void
+    computeThreshold(int trustedValidations, Rules const& rules)
+    {
+        threshold_ = !rules_.enabled(fixAmendmentMajorityCalc)
+            ? std::max(
+                  1L,
+                  static_cast<long>(
+                      (trustedValidations_ *
+                       preFixAmendmentMajorityCalcThreshold.num) /
+                      preFixAmendmentMajorityCalcThreshold.den))
+            : std::max(
+                  1L,
+                  static_cast<long>(
+                      (trustedValidations_ *
+                       postFixAmendmentMajorityCalcThreshold.num) /
+                      postFixAmendmentMajorityCalcThreshold.den));
+    }
+

@@ -1,0 +1,31 @@
+# Source excerpt E08 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55.
+# File: src/xrpld/app/misc/detail/AmendmentTable.cpp, lines 289-311.
+# Line numbers verified with grep -n on a local checkout of the pinned commit.
+# Source file SHA-256: 17442288c19bbf1cf0da1a85e596e3add6218757ec91a22f353cd03e2edbaf33
+# Source file git blob SHA: b13e40c3aed1ec8dbd9ec68a464caa5f512f113f
+# Source file size: 34890 bytes
+
+# --- src/xrpld/app/misc/detail/AmendmentTable.cpp lines 289-311 ---
+    Tells if a amendment is supported, enabled or vetoed. A vetoed amendment
+    means the node will never announce its support.
+*/
+struct AmendmentState
+{
+    /** If an amendment is down-voted, a server will not vote to enable it */
+    AmendmentVote vote = AmendmentVote::down;
+
+    /** Indicates that the amendment has been enabled.
+        This is a one-way switch: once an amendment is enabled
+        it can never be disabled, but it can be superseded by
+        a subsequent amendment.
+    */
+    bool enabled = false;
+
+    /** Indicates an amendment that this server has code support for. */
+    bool supported = false;
+
+    /** The name of this amendment, possibly empty. */
+    std::string name;
+
+    explicit AmendmentState() = default;
+};

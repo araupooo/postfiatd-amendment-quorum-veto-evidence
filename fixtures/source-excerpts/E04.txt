@@ -1,0 +1,36 @@
+# Source excerpt E04 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55.
+# File: src/xrpld/app/misc/detail/AmendmentTable.cpp, lines 153-180.
+# Line numbers verified with grep -n on a local checkout of the pinned commit.
+# Source file SHA-256: 17442288c19bbf1cf0da1a85e596e3add6218757ec91a22f353cd03e2edbaf33
+# Source file git blob SHA: b13e40c3aed1ec8dbd9ec68a464caa5f512f113f
+# Source file size: 34890 bytes
+
+# --- src/xrpld/app/misc/detail/AmendmentTable.cpp lines 153-180 ---
+    recordVotes(
+        Rules const& rules,
+        std::vector<std::shared_ptr<STValidation>> const& valSet,
+        NetClock::time_point const closeTime,
+        beast::Journal j,
+        std::lock_guard<std::mutex> const& lock)
+    {
+        // When we get an STValidation we save the upVotes it contains, but
+        // we also set an expiration for those upVotes.  The following constant
+        // controls the timeout.
+        //
+        // There really is no "best" timeout to choose for when we finally
+        // lose confidence that we know how a validator is voting.  But part
+        // of the point of recording validator votes is to avoid flapping of
+        // amendment votes.  A 24h timeout says that we will change the local
+        // record of a validator's vote to "no" 24h after the last vote seen
+        // from that validator.  So flapping due to that validator being off
+        // line will happen less frequently than every 24 hours.
+        using namespace std::chrono_literals;
+        static constexpr NetClock::duration expiresAfter = 24h;
+
+        auto const newTimeout = closeTime + expiresAfter;
+
+        // Walk all validations and replace previous votes from trusted
+        // validators with these newest votes.
+        for (auto const& val : valSet)
+        {
+            auto const pkHuman =

@@ -1,0 +1,43 @@
+# Source excerpt E06 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55.
+# File: src/xrpld/app/misc/detail/AmendmentTable.cpp, lines 232-266.
+# Line numbers verified with grep -n on a local checkout of the pinned commit.
+# Source file SHA-256: 17442288c19bbf1cf0da1a85e596e3add6218757ec91a22f353cd03e2edbaf33
+# Source file git blob SHA: b13e40c3aed1ec8dbd9ec68a464caa5f512f113f
+# Source file size: 34890 bytes
+
+# --- src/xrpld/app/misc/detail/AmendmentTable.cpp lines 232-266 ---
+                        votes.second.upVotes.empty(),
+                        "ripple::TrustedVotes::recordVotes : received no "
+                        "upvotes");
+                    JLOG(j.debug())
+                        << "recordVotes: Have not received any "
+                           "amendment votes from "
+                        << pkHuman << " since last timeout or startup";
+                }
+                else if (closeTime > votes.second.timeout)
+                {
+                    JLOG(j.debug())
+                        << "recordVotes: Timeout: Clearing votes from "
+                        << pkHuman;
+                    votes.second.timeout.reset();
+                    votes.second.upVotes.clear();
+                }
+                else if (votes.second.timeout != newTimeout)
+                {
+                    XRPL_ASSERT(
+                        votes.second.timeout < newTimeout,
+                        "ripple::TrustedVotes::recordVotes : votes not "
+                        "expired");
+                    using namespace std::chrono;
+                    auto const age = duration_cast<minutes>(
+                        newTimeout - *votes.second.timeout);
+                    JLOG(j.debug()) << "recordVotes: Using " << age.count()
+                                    << "min old cached votes from " << pkHuman;
+                }
+            });
+    }
+
+    // Return the information needed by AmendmentSet to determine votes.
+    //
+    // Call with AmendmentTable::mutex_ locked.
+    [[nodiscard]] std::pair<int, hash_map<uint256, int>>

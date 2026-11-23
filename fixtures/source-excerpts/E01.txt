@@ -1,0 +1,18 @@
+# Source excerpt E01 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55.
+# File: include/xrpl/protocol/SystemParameters.h, lines 79-88.
+# Line numbers verified with grep -n on a local checkout of the pinned commit.
+# Source file SHA-256: 1ddb7af3e76708103ed5a43320fbeceeaa9b95ed06a436020790a12c55226fcc
+# Source file git blob SHA: 48202928205df69ede2398618420d5585d82b3c4
+# Source file size: 3242 bytes
+
+# --- include/xrpl/protocol/SystemParameters.h lines 79-88 ---
+
+    @note This value is used by legacy code and will become obsolete
+          once the fixAmendmentMajorityCalc amendment activates.
+*/
+constexpr std::ratio<204, 256> preFixAmendmentMajorityCalcThreshold;
+
+constexpr std::ratio<67, 100> postFixAmendmentMajorityCalcThreshold;
+
+/** The minimum amount of time an amendment must hold a majority */
+constexpr std::chrono::seconds const defaultAmendmentMajorityTime = std::chrono::weeks{2};

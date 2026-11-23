@@ -1,0 +1,43 @@
+# Source excerpt E05 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55.
+# File: src/xrpld/app/misc/detail/AmendmentTable.cpp, lines 186-220.
+# Line numbers verified with grep -n on a local checkout of the pinned commit.
+# Source file SHA-256: 17442288c19bbf1cf0da1a85e596e3add6218757ec91a22f353cd03e2edbaf33
+# Source file git blob SHA: b13e40c3aed1ec8dbd9ec68a464caa5f512f113f
+# Source file size: 34890 bytes
+
+# --- src/xrpld/app/misc/detail/AmendmentTable.cpp lines 186-220 ---
+                iter->second.timeout = newTimeout;
+                if (val->isFieldPresent(sfAmendments))
+                {
+                    auto const& choices = val->getFieldV256(sfAmendments);
+                    iter->second.upVotes.assign(choices.begin(), choices.end());
+                    JLOG(j.debug())
+                        << "recordVotes: Validation from trusted " << pkHuman
+                        << " has " << choices.size() << " amendment votes: "
+                        << boost::algorithm::join(
+                               iter->second.upVotes |
+                                   boost::adaptors::transformed(
+                                       to_string<256, void>),
+                               ", ");
+                    // TODO: Maybe transform using to_short_string once #5126 is
+                    // merged
+                    //
+                    // iter->second.upVotes |
+                    // boost::adaptors::transformed(to_short_string<256, void>)
+                }
+                else
+                {
+                    // This validator does not upVote any amendments right now.
+                    iter->second.upVotes.clear();
+                    JLOG(j.debug()) << "recordVotes: Validation from trusted "
+                                    << pkHuman << " has no amendment votes.";
+                }
+            }
+            else
+            {
+                JLOG(j.debug())
+                    << "recordVotes: Ignoring validation from untrusted "
+                    << pkHuman;
+            }
+        }
+
