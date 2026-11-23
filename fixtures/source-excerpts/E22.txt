@@ -1,0 +1,45 @@
+# Source excerpt E22 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55.
+# File: src/xrpld/app/misc/detail/AmendmentTable.cpp, lines 997-1033.
+# Line numbers verified with grep -n on a local checkout of the pinned commit.
+# Source file SHA-256: 17442288c19bbf1cf0da1a85e596e3add6218757ec91a22f353cd03e2edbaf33
+# Source file git blob SHA: b13e40c3aed1ec8dbd9ec68a464caa5f512f113f
+# Source file size: 34890 bytes
+
+# --- src/xrpld/app/misc/detail/AmendmentTable.cpp lines 997-1033 ---
+
+void
+AmendmentTableImpl::injectJson(
+    Json::Value& v,
+    uint256 const& id,
+    AmendmentState const& fs,
+    bool isAdmin,
+    std::lock_guard<std::mutex> const&) const
+{
+    if (!fs.name.empty())
+        v[jss::name] = fs.name;
+
+    v[jss::supported] = fs.supported;
+    if (!fs.enabled && isAdmin)
+    {
+        if (fs.vote == AmendmentVote::obsolete)
+            v[jss::vetoed] = "Obsolete";
+        else
+            v[jss::vetoed] = fs.vote == AmendmentVote::down;
+    }
+    v[jss::enabled] = fs.enabled;
+
+    if (!fs.enabled && lastVote_ && isAdmin)
+    {
+        auto const votesTotal = lastVote_->trustedValidations();
+        auto const votesNeeded = lastVote_->threshold();
+        auto const votesFor = lastVote_->votes(id);
+
+        v[jss::count] = votesFor;
+        v[jss::validations] = votesTotal;
+
+        if (votesNeeded)
+            v[jss::threshold] = votesNeeded;
+    }
+}
+
+Json::Value

@@ -1,0 +1,34 @@
+# Source excerpt E29 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55.
+# File: src/xrpld/app/consensus/RCLConsensus.cpp, lines 895-920.
+# Line numbers verified with grep -n on a local checkout of the pinned commit.
+# Source file SHA-256: 72716393a820832d7fd6f6084f4ac9534fdc7ccf09c10f5aa8d2f129828a0cee
+# Source file git blob SHA: 457555cc1c83cb617a6838e0099fc93e1d715b49
+# Source file size: 37567 bytes
+
+# --- src/xrpld/app/consensus/RCLConsensus.cpp lines 895-920 ---
+                }
+            }
+
+            // If the next ledger is a flag ledger, suggest fee changes and
+            // new features:
+            if (ledger.ledger_->isVotingLedger())
+            {
+                // Fees:
+                feeVote_->doValidation(
+                    ledger.ledger_->fees(), ledger.ledger_->rules(), v);
+
+                // Amendments
+                // FIXME: pass `v` and have the function insert the array
+                // directly?
+                auto const amendments = app_.getAmendmentTable().doValidation(
+                    getEnabledAmendments(*ledger.ledger_));
+
+                if (!amendments.empty())
+                    v.setFieldV256(
+                        sfAmendments, STVector256(sfAmendments, amendments));
+            }
+        });
+
+    auto const serialized = v->getSerialized();
+
+    // suppress it if we receive it

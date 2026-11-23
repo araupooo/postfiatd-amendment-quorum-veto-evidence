@@ -1,0 +1,27 @@
+# Source excerpt E27 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55.
+# File: src/xrpld/app/ledger/Ledger.cpp, lines 968-986.
+# Line numbers verified with grep -n on a local checkout of the pinned commit.
+# Source file SHA-256: 8c56833ab46470050f355c06efec642ed4054209ffcb63084aca9da734f82516
+# Source file git blob SHA: 26552704258627756361a07e0c85a260ed229321
+# Source file size: 33022 bytes
+
+# --- src/xrpld/app/ledger/Ledger.cpp lines 968-986 ---
+
+bool
+Ledger::isFlagLedger() const
+{
+    return info_.seq % FLAG_LEDGER_INTERVAL == 0;
+}
+bool
+Ledger::isVotingLedger() const
+{
+    return (info_.seq + 1) % FLAG_LEDGER_INTERVAL == 0;
+}
+
+bool
+isFlagLedger(LedgerIndex seq)
+{
+    return seq % FLAG_LEDGER_INTERVAL == 0;
+}
+
+static bool

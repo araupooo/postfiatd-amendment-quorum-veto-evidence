@@ -1,0 +1,41 @@
+# Source excerpt E31 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55.
+# File: src/xrpld/app/tx/detail/Change.cpp, lines 313-345.
+# Line numbers verified with grep -n on a local checkout of the pinned commit.
+# Source file SHA-256: 0adcc813ae9cf1d915d77e45b5e2c7e8f780b44a2daea91ef3a06f87706a0150
+# Source file git blob SHA: 9079934b0434c4a43e3979e0d257b29962d1c132
+# Source file size: 25990 bytes
+
+# --- src/xrpld/app/tx/detail/Change.cpp lines 313-345 ---
+
+    STArray newMajorities(sfMajorities);
+
+    bool found = false;
+    if (amendmentObject->isFieldPresent(sfMajorities))
+    {
+        STArray const& oldMajorities =
+            amendmentObject->getFieldArray(sfMajorities);
+        for (auto const& majority : oldMajorities)
+        {
+            if (majority.getFieldH256(sfAmendment) == amendment)
+            {
+                if (gotMajority)
+                    return tefALREADY;
+                found = true;
+            }
+            else
+            {
+                // pass through
+                newMajorities.push_back(majority);
+            }
+        }
+    }
+
+    if (!found && lostMajority)
+        return tefALREADY;
+
+    if (gotMajority)
+    {
+        // This amendment now has a majority
+        newMajorities.push_back(STObject::makeInnerObject(sfMajority));
+        auto& entry = newMajorities.back();
+        entry[sfAmendment] = amendment;

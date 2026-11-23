@@ -1,0 +1,39 @@
+# Source excerpt E23 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55.
+# File: src/xrpld/app/misc/AmendmentTable.h, lines 40-70.
+# Line numbers verified with grep -n on a local checkout of the pinned commit.
+# Source file SHA-256: d894f30165ac115c5e3f5855ca9901ca01c8869fcf173ea455e7af9c0cd76260
+# Source file git blob SHA: deb0386236cd5ed0ee210d8aeae50f582cd7b586
+# Source file size: 6822 bytes
+
+# --- src/xrpld/app/misc/AmendmentTable.h lines 40-70 ---
+public:
+    struct FeatureInfo
+    {
+        FeatureInfo() = delete;
+        FeatureInfo(std::string const& n, uint256 const& f, VoteBehavior v)
+            : name(n), feature(f), vote(v)
+        {
+        }
+
+        std::string const name;
+        uint256 const feature;
+        VoteBehavior const vote;
+    };
+
+    virtual ~AmendmentTable() = default;
+
+    virtual uint256
+    find(std::string const& name) const = 0;
+
+    virtual bool
+    veto(uint256 const& amendment) = 0;
+    virtual bool
+    unVeto(uint256 const& amendment) = 0;
+
+    virtual bool
+    enable(uint256 const& amendment) = 0;
+
+    virtual bool
+    isEnabled(uint256 const& amendment) const = 0;
+    virtual bool
+    isSupported(uint256 const& amendment) const = 0;

@@ -1,0 +1,44 @@
+# Source excerpt E28 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55.
+# File: src/xrpld/app/consensus/RCLConsensus.cpp, lines 355-390.
+# Line numbers verified with grep -n on a local checkout of the pinned commit.
+# Source file SHA-256: 72716393a820832d7fd6f6084f4ac9534fdc7ccf09c10f5aa8d2f129828a0cee
+# Source file git blob SHA: 457555cc1c83cb617a6838e0099fc93e1d715b49
+# Source file size: 37567 bytes
+
+# --- src/xrpld/app/consensus/RCLConsensus.cpp lines 355-390 ---
+    {
+        // Call ValidatorVoteTracker for every ledger
+        app_.getValidatorVoteTracker().doVoting(
+            prevLedger, 
+            app_.getValidations().getTrustedForLedger(
+                prevLedger->info().parentHash, prevLedger->seq() - 1),
+            initialSet, 
+            j_);
+
+        if (prevLedger->isFlagLedger())
+        {
+            // previous ledger was flag ledger, add fee and amendment
+            // pseudo-transactions
+            auto validations = app_.validators().negativeUNLFilter(
+                app_.getValidations().getTrustedForLedger(
+                    prevLedger->info().parentHash, prevLedger->seq() - 1));
+            if (validations.size() >= app_.validators().quorum())
+            {
+                feeVote_->doVoting(prevLedger, validations, initialSet);
+                app_.getAmendmentTable().doVoting(
+                    prevLedger, validations, initialSet, j_);
+            }
+        }
+        else if (
+            prevLedger->isVotingLedger() &&
+            prevLedger->rules().enabled(featureNegativeUNL))
+        {
+            // previous ledger was a voting ledger,
+            // so the current consensus session is for a flag ledger,
+            // add negative UNL pseudo-transactions
+            nUnlVote_.doVoting(
+                prevLedger,
+                app_.validators().getTrustedMasterKeys(),
+                app_.getValidations(),
+                initialSet);
+        }

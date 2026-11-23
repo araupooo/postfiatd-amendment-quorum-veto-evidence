@@ -1,0 +1,35 @@
+# Source excerpt E30 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55.
+# File: src/xrpld/app/tx/detail/Change.cpp, lines 286-312.
+# Line numbers verified with grep -n on a local checkout of the pinned commit.
+# Source file SHA-256: 0adcc813ae9cf1d915d77e45b5e2c7e8f780b44a2daea91ef3a06f87706a0150
+# Source file git blob SHA: 9079934b0434c4a43e3979e0d257b29962d1c132
+# Source file size: 25990 bytes
+
+# --- src/xrpld/app/tx/detail/Change.cpp lines 286-312 ---
+Change::applyAmendment()
+{
+    uint256 amendment(ctx_.tx.getFieldH256(sfAmendment));
+
+    auto const k = keylet::amendments();
+
+    SLE::pointer amendmentObject = view().peek(k);
+
+    if (!amendmentObject)
+    {
+        amendmentObject = std::make_shared<SLE>(k);
+        view().insert(amendmentObject);
+    }
+
+    STVector256 amendments = amendmentObject->getFieldV256(sfAmendments);
+
+    if (std::find(amendments.begin(), amendments.end(), amendment) !=
+        amendments.end())
+        return tefALREADY;
+
+    auto flags = ctx_.tx.getFlags();
+
+    bool const gotMajority = (flags & tfGotMajority) != 0;
+    bool const lostMajority = (flags & tfLostMajority) != 0;
+
+    if (gotMajority && lostMajority)
+        return temINVALID_FLAG;

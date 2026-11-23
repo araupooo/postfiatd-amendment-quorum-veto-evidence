@@ -1,0 +1,43 @@
+# Source excerpt E32 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55.
+# File: src/xrpld/app/tx/detail/Change.cpp, lines 346-380.
+# Line numbers verified with grep -n on a local checkout of the pinned commit.
+# Source file SHA-256: 0adcc813ae9cf1d915d77e45b5e2c7e8f780b44a2daea91ef3a06f87706a0150
+# Source file git blob SHA: 9079934b0434c4a43e3979e0d257b29962d1c132
+# Source file size: 25990 bytes
+
+# --- src/xrpld/app/tx/detail/Change.cpp lines 346-380 ---
+        entry[sfCloseTime] =
+            view().parentCloseTime().time_since_epoch().count();
+
+        if (!ctx_.app.getAmendmentTable().isSupported(amendment))
+        {
+            JLOG(j_.warn()) << "Unsupported amendment " << amendment
+                            << " received a majority.";
+        }
+    }
+    else if (!lostMajority)
+    {
+        // No flags, enable amendment
+        amendments.push_back(amendment);
+        amendmentObject->setFieldV256(sfAmendments, amendments);
+
+        if (amendment == fixTrustLinesToSelf)
+            activateTrustLinesToSelfFix();
+
+        ctx_.app.getAmendmentTable().enable(amendment);
+
+        if (!ctx_.app.getAmendmentTable().isSupported(amendment))
+        {
+            JLOG(j_.error()) << "Unsupported amendment " << amendment
+                             << " activated: server blocked.";
+            ctx_.app.getOPs().setAmendmentBlocked();
+        }
+    }
+
+    if (newMajorities.empty())
+        amendmentObject->makeFieldAbsent(sfMajorities);
+    else
+        amendmentObject->setFieldArray(sfMajorities, newMajorities);
+
+    view().update(amendmentObject);
+

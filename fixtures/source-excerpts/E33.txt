@@ -1,0 +1,49 @@
+# Source excerpt E33 — postfiatd 0085a1ff885d6a446369cf73a4430f75af22be55.
+# File: src/libxrpl/ledger/View.cpp, lines 1000-1040.
+# Line numbers verified with grep -n on a local checkout of the pinned commit.
+# Source file SHA-256: a2457d6e70129bf87e9b4fc27b96ba121302d3954609a9de7c496b22fe415b70
+# Source file git blob SHA: 2a1cb0cab5cb95a643ff1d0322192868b0aeb55f
+# Source file size: 123511 bytes
+
+# --- src/libxrpl/ledger/View.cpp lines 1000-1040 ---
+getEnabledAmendments(ReadView const& view)
+{
+    std::set<uint256> amendments;
+
+    if (auto const sle = view.read(keylet::amendments()))
+    {
+        if (sle->isFieldPresent(sfAmendments))
+        {
+            auto const& v = sle->getFieldV256(sfAmendments);
+            amendments.insert(v.begin(), v.end());
+        }
+    }
+
+    return amendments;
+}
+
+majorityAmendments_t
+getMajorityAmendments(ReadView const& view)
+{
+    majorityAmendments_t ret;
+
+    if (auto const sle = view.read(keylet::amendments()))
+    {
+        if (sle->isFieldPresent(sfMajorities))
+        {
+            using tp = NetClock::time_point;
+            using d = tp::duration;
+
+            auto const majorities = sle->getFieldArray(sfMajorities);
+
+            for (auto const& m : majorities)
+                ret[m.getFieldH256(sfAmendment)] =
+                    tp(d(m.getFieldU32(sfCloseTime)));
+        }
+    }
+
+    return ret;
+}
+
+std::optional<uint256>
+hashOfSeq(ReadView const& ledger, LedgerIndex seq, beast::Journal journal)
